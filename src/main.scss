@@ -1,0 +1,129 @@
+$primary: #384787;
+$secondary: #65a4f1;
+$charcoal: #666666;
+$error: #F4516C;
+$success: #5CBF60;
+$warning: #FFC107;
+
+// 나눔폰트
+.nanum {
+  font-family: 'NanumSquare', sans-serif !important;
+}
+
+.section-title {
+  // font-size: 21px;
+  font-family: 'NanumSquare', sans-serif !important;
+  font-size: 20px;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.cusor-pointer {
+  cursor: pointer;
+}
+
+.label{
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+}
+
+.ink-color {
+  color: #666 !important;
+}
+
+.v-rating__wrapper {
+  margin: 0 -4px;
+  .v-rating__item .v-btn {
+    font-size: 14px;
+  }
+}
+
+.status-chip {
+  padding: 4px 8px;
+  margin-right: 8px;
+  border-radius: 15px;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.v-table {
+  th, td {
+    white-space: nowrap;
+  }
+  th {
+    text-align: center !important;
+    color: #666;
+    font-weight: normal;
+  }
+  td {
+    text-align: center;
+  }
+}
+
+// 상세 목록 리스팅
+dl{
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  dt{
+    width: 24%;
+    white-space: nowrap;
+    color: #999;
+    flex-shrink: 0;
+    min-width: 100px;
+    padding-right: 24px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  dd{
+    display: flex;
+    width: 100%;
+    min-height: 24px;
+  }
+  &.dense{
+    padding: 4px 0;
+  }
+  &.border-thick{
+    border-bottom: 1px solid #aaa !important;
+  }
+}
+dl:not(.border-none) {
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.label {
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+}
+
+.text-dense {
+  letter-spacing: 0 !important;
+}
+
+.v-btn-toggle {
+  .v-btn:not(.v-btn--active) {
+    background-color: #f9f9f9;
+    color: #aaa;
+  }
+}
+
+.check-column {
+  max-width: 32px !important;
+  min-width: 32px !important;
+  padding: 0 !important;
+  .v-checkbox-btn{
+    margin-bottom: -4px;
+  }
+}
+
+// Media Point
+@media screen and (max-width: 959px) {
+  dl{
+    font-size: 15px;
+    padding: 10px 0;
+    dt{
+      text-align: left;
+    }
+  }
+}

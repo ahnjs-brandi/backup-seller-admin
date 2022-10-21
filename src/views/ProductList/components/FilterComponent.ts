@@ -8,25 +8,26 @@ export default defineComponent({
     isSelected: { type: Boolean, required: true },
   },
 
-  data: () => ({
-    filters: {} as Product.Params,
-    showFilters: true,
-    date: null,
-    exhibitionOptions: [
-      { title: '진열 중', value: true },
-      { title: '진열 안함', value: false },
-    ],
-    sellOptions: [
-      { title: '판매 중', value: true },
-      { title: 'SOLD OUT', value: false },
-    ],
-    discountOptions: [
-      { title: '할인 중', value: true },
-      { title: '미할인', value: false },
-    ],
-    category1Options: ['자체제작','아우터','상의','바지','원피스','스커트','신발','가방','주얼리','패션소품','언더웨어','홈웨어','비치웨어','빅사이즈','기타'],
-    category2Options: []
-  }),
+  data() {
+    return {
+      filters: this.modelValue,
+      showFilters: true,
+      date: null,
+      exhibitionOptions: [
+        { title: '진열 중', value: true },
+        { title: '진열 안함', value: false },
+      ],
+      sellOptions: [
+        { title: '판매 중', value: true },
+        { title: 'SOLD OUT', value: false },
+      ],
+      discountOptions: [
+        { title: '할인 중', value: true },
+        { title: '미할인', value: false },
+      ],
+      category1Options: ['자체제작','아우터','상의','바지','원피스','스커트','신발','가방','주얼리','패션소품','언더웨어','홈웨어','비치웨어','빅사이즈','기타'],
+    }
+  },
 
   watch: {
     'modelValue'() {

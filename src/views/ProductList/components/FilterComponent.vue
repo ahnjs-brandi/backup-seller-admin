@@ -88,7 +88,6 @@
         <v-col cols="6" sm="4" v-if="filters.category1">
           <v-select
             v-model="filters.category2"
-            :items="category2Options"
             density="compact"
             placeholder="상세 카테고리"
             clearable
@@ -99,19 +98,19 @@
             @click:clear="$emit('change')"
           />
         </v-col>
-        <v-col cols="6" sm="4">
+        <v-col cols="12" sm="8">
           <DatePicker
             v-model="date"
             placeholder="등록일"
             density="compact"
             hide-details
             range
+            clearable
+            min="2016-07-01"
+            :max="$moment().format('YYYY-MM-DD')"
             :disabled="isSelected"
             @update:modelValue="$emit('change')"
           />
-        </v-col>
-        <v-col cols="6" sm="4">
-          date: {{ date }}
         </v-col>
       </v-row>
     </v-slide-y-transition>

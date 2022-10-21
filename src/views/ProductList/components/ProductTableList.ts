@@ -10,26 +10,24 @@ export default defineComponent({
     selectMode: { type: Boolean, required: true, }
   },
 
+  data() {
+    return {
+      selected: this.modelValue,
+      allSelected: false,
+    }
+  },
+
   watch: {
     'selected'() {
-      if (this.selected.length !== this.products.length) {
-        this.allSelected = false;
-      }
+      this.allSelected = this.selected.length === this.products.length;
       this.$emit('update:modelValue', this.selected);
     },
     'modelValue'() {
       this.selected = this.modelValue;
-      this.allSelected = this.selected.length === this.products.length;
     }
   },
 
-  data: () => ({
-    selected: [] as number[],
-    allSelected: false,
-  }),
-
   mounted() {
-    this.selected = this.modelValue;
     this.allSelected = this.selected.length === this.products.length;
   },
 

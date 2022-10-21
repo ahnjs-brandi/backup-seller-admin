@@ -10,11 +10,13 @@ export default defineComponent({
     LeftComponent,
   },
 
-  data: () => ({
-    open: [],             // 네비게이션 메뉴 그룹 펼침 여부
-    fullscreen: false,    // 전체화면 여부
-    safari: false,        // 사파리 여부
-  }),
+  data() {
+    return {
+      open: [],             // 네비게이션 메뉴 그룹 펼침 여부
+      fullscreen: false,    // 전체화면 여부
+      safari: false,        // 사파리 여부
+    }
+  },
 
   mounted() {
     // 사파리 여부 파악

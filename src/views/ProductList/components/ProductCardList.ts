@@ -22,14 +22,14 @@ export default defineComponent({
     }
   },
 
-  data: () => ({
-    selected: [] as number[],
-    allSelected: false,
-    rating: 4.8,
-  }),
-
+  data() {
+    return {
+      selected: this.modelValue,
+      allSelected: false,
+      rating: 4.8,
+    }
+  },
   mounted() {
-    this.selected = this.modelValue;
     this.allSelected = this.selected.length === this.products.length;
   },
 

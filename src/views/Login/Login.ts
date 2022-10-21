@@ -3,13 +3,15 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'Login',
 
-  data: () => ({
-    username: '',
-    password: '',
-    remember: false,
-    showPassword: false,
-    visibility: false,
-  }),
+  data() {
+    return {
+      username: '',
+      password: '',
+      remember: false,
+      showPassword: false,
+      visibility: false,
+    }
+  },
 
   methods: {
     login() {

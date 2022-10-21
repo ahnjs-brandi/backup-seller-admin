@@ -15,16 +15,19 @@ export default defineComponent({
     ListActionComponent
   },
 
-  data: () => ({
-    viewOption: 'card',
-    selectMode: false,
-    showFilters: false,
-    showNoDataMessage: false,
-    date: '2022-11-01',
-    params: {} as Product.Params,
-    selectedItems: [],
-    products: [] as Product.List[],
-  }),
+  data() {
+    return {
+      viewOption: 'card',
+      selectMode: false,
+      showFilters: false,
+      showNoDataMessage: false,
+      date: '2022-11-01',
+      params: {} as Product.Params,
+      selectedItems: [],
+      products: [] as Product.List[],
+      test: true
+    }
+  },
 
   watch: {
     'selectMode'() {
@@ -46,6 +49,12 @@ export default defineComponent({
     }
   },
 
+  // computed: {
+  //   isSelected() {
+  //     // return this.selectedItems.length > 0;
+  //     return this.test;
+  //   }
+  // },
   computed: {
     isSelected() {
       return this.selectedItems.length > 0;

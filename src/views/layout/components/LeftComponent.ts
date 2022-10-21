@@ -3,10 +3,12 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'LeftComponent',
 
-  data: () => ({
-    open: [] as string[],
-    drawer: true,
-  }),
+  data() {
+    return {
+      open: [] as string[],
+      drawer: true,
+    }
+  },
 
   computed: {
     currentView() {

@@ -3,10 +3,12 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'TopComponent',
 
-  data: () => ({
-    fullscreen: false,
-    safari: false,
-  }),
+  data() {
+    return {
+      fullscreen: false,
+      safari: false,
+    }
+  },
 
   mounted() {
     this.safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);

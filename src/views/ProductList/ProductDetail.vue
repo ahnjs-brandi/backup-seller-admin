@@ -110,4 +110,4 @@
   </v-form>
 </template>
 
-<script lang="ts" src="./ProductDetailView.ts" />
+<script lang="ts" src="./ProductDetail.ts" />

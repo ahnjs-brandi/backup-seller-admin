@@ -59,4 +59,4 @@
   </v-row>
 </template>
 
-<script lang="ts" src="./DashboardView.ts" />
+<script lang="ts" src="./Dashboard.ts" />

@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'DashboardView',
+  name: 'Dashboard',
 
   data: () => ({
     //

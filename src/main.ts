@@ -9,7 +9,7 @@ import VCalendar from 'v-calendar';
 import { loadFonts } from './plugins/webfontloader'
 
 // 공용 컴포넌트
-import ColorChip from './components/color-chip.vue';
+import DatePicker from './components/DatePickerComponent.vue';
 
 loadFonts()
 
@@ -22,6 +22,6 @@ const app = createApp(App)
 app.config.globalProperties.$moment = moment;
 app.config.globalProperties.$filters = filters;
 
-app.component('ColorChip', ColorChip);
+app.component('DatePicker', DatePicker);
 
 app.mount('#app')

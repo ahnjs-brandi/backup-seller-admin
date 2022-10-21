@@ -10,7 +10,8 @@ export default defineComponent({
 
   data: () => ({
     filters: {} as Product.Params,
-    showFilters: false,
+    showFilters: true,
+    date: null,
     exhibitionOptions: [
       { title: '진열 중', value: true },
       { title: '진열 안함', value: false },

@@ -26,8 +26,6 @@
     </v-col>
   </v-row>
 
-  <!-- <v-date-picker v-model="date" /> -->
-
   <v-row align="center" class="mb-2" dense>
     <v-col cols="12" md="4">
       <div class="font-weight-medium" v-if="!selectedItems.length">
@@ -108,7 +106,7 @@
 </template>
 
 
-import FilterComponent from "./components/FilterComponent.vue";<script lang="ts" src="./ProductListView.ts" />
+import FilterComponent from "./components/FilterComponent.vue";<script lang="ts" src="./ProductList.ts" />
 
 <style lang="scss" scoped>
 $primary: #384787;

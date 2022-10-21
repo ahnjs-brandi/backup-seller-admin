@@ -75,7 +75,7 @@
   </div>
 </template>
 
-<script lang="ts" src="./LoginView.ts" />
+<script lang="ts" src="./Login.ts" />
 
 <style lang="scss">
   .login-box {

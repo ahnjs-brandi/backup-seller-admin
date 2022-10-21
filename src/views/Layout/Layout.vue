@@ -33,4 +33,4 @@
   </v-main>
 </template>
 
-<script lang="ts" src="./LayoutView.ts" />
+<script lang="ts" src="./Layout.ts" />

@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Layout from '@/views/layout/LayoutView.vue';
-import Login from '@/views/login/LoginView.vue';
+import Layout from '@/views/Layout/Layout.vue';
+import Login from '@/views/Login/Login.vue';
 import store from '@/store';
 
 const routes: Array<RouteRecordRaw> = [
@@ -10,9 +10,9 @@ const routes: Array<RouteRecordRaw> = [
     component: Layout,
     children: [
       { path: '', redirect: '/product-list' },
-      { path: '/dashboard', meta: { title: '대쉬보드' }, component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dash-board/DashboardView.vue') },
-      { path: '/product-list', meta: { title: '상품 리스트' }, component: () => import(/* webpackChunkName: "product-list" */ '@/views/product-list/ProductListView.vue') },
-      { path: '/product-list/product/:id', meta: { title: '상품 상세보기' }, props: true, component: () => import(/* webpackChunkName: "product-detail" */ '@/views/product-list/ProductDetailView.vue') },
+      { path: '/dashboard', meta: { title: '대쉬보드' }, component: () => import(/* webpackChunkName: "dashboard" */ '@/views/Dashboard/Dashboard.vue') },
+      { path: '/product-list', meta: { title: '상품 리스트' }, component: () => import(/* webpackChunkName: "product-list" */ '@/views/ProductList/ProductList.vue') },
+      { path: '/product-list/product/:id', meta: { title: '상품 상세보기' }, props: true, component: () => import(/* webpackChunkName: "product-detail" */ '@/views/ProductList/ProductDetail.vue') },
     ]
   },
   { path: '/:pathMatch(.*)*', component: () => import(/* webpackChunkName: "not-found" */ '@/views/NotFound.vue') },

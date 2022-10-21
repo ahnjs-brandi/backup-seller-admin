@@ -99,13 +99,25 @@
             @click:clear="$emit('change')"
           />
         </v-col>
-        <v-col cols="6" sm="4" v-if="filters.category1">
-          date picker
+        <v-col cols="6" sm="4">
+          <DatePicker
+            v-model="date"
+            placeholder="등록일"
+            density="compact"
+            hide-details
+            range
+            :disabled="isSelected"
+            @update:modelValue="$emit('change')"
+          />
+        </v-col>
+        <v-col cols="6" sm="4">
+          date: {{ date }}
         </v-col>
       </v-row>
     </v-slide-y-transition>
   </div>
 </template>
+
 
 <script lang="ts" src="./FilterComponent.ts" />
 

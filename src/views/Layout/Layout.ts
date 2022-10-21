@@ -3,7 +3,7 @@ import TopComponent from './components/TopComponent.vue';
 import LeftComponent from './components/LeftComponent.vue';
 
 export default defineComponent({
-  name: 'LayoutView',
+  name: 'Layout',
 
   components: {
     TopComponent,

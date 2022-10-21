@@ -10,6 +10,8 @@ $warning: #FFC107;
   font-family: 'NanumSquare', sans-serif !important;
 }
 
+
+
 .section-title {
   // font-size: 21px;
   font-family: 'NanumSquare', sans-serif !important;
@@ -39,6 +41,11 @@ $warning: #FFC107;
   }
 }
 
+.file-input .v-field__input{
+  font-size: 13px;
+  // margin-top: 4px;
+}
+
 .status-chip {
   padding: 4px 8px;
   margin-right: 8px;
@@ -59,6 +66,46 @@ $warning: #FFC107;
   td {
     text-align: center;
   }
+}
+
+// 텍스트 필드 스타일 오버라이딩
+.v-field--variant-filled {
+  &.v-field {
+    // border: 1px solid #e1e1e1;
+    // border: 1px solid #384787;
+    // border-radius: 4px;
+    // color: #7C7E82 !important;
+  }
+  .v-field__overlay {
+    background-color: #F5F5F5 !important;
+  }
+  // .v-progress-linear__background {
+  //   background-color: red !important;
+  // }
+  // &.v-field--focused {
+  //   &.v-field {
+  //     box-shadow: 0 0 4px #384787 !important;
+  //     border: inset 6px solid red !important;
+  //   }
+    // box-shadow: 0 0 4px #384787 !important;
+    // border: inset 6px solid #384787;
+  // }
+}
+
+.v-field--variant-filled.v-field {
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+  .v-field__outline {
+    display: none;
+  }
+}
+.v-field--variant-filled.v-field.v-field--focused {
+  box-shadow: 0 0 4px #5867a7 !important;
+  border: 1px solid #5867a7;
+}
+
+.v-field--variant-filled.v-field.v-field--error {
+  border: 1px solid $error;
 }
 
 // 상세 목록 리스팅

@@ -32,5 +32,10 @@ declare namespace Product {
     tax: boolean | null;
     delivery: string;
     name: string | null;
+    image1: array | null;
+    image2: array | null;
+    image3: array | null;
+    image4: array | null;
+    image5: array | null;
   }
 }

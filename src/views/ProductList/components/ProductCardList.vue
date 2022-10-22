@@ -50,7 +50,7 @@
               :value="item.id"
               color="secondary"
               class="text-white ma-n2"
-              style="text-shadow: 1px 1px 1px rgba(0, 0, 0, .1);"
+              style="text-shadow: 1px 1px 1px rgba(0, 0, 0, .1)"
             />
           </div>
         </v-img>
@@ -72,13 +72,13 @@
           </div>
 
           <div class="d-flex align-center mt-3">
-            <!-- <v-rating
+            <v-rating
               v-model="rating"
               density="compact"
               color="amber"
               half-increments
               readonly
-            /> -->
+            />
             <v-btn variant="plain" class="ml-n2">12개</v-btn>
           </div>
         </v-card-text>

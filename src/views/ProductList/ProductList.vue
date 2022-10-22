@@ -27,8 +27,8 @@
   </v-row>
 
   <v-row align="center" class="mb-2" dense>
-    <v-col cols="12" md="4">
-      <div class="font-weight-medium" v-if="!selectedItems.length">
+    <v-col cols="12" md="4" style="min-height: 32px">
+      <div v-if="!selectedItems.length" class="font-weight-medium">
         검색결과 {{ products.length }}건
       </div>
 

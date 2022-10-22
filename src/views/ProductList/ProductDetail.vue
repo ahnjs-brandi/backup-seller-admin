@@ -35,7 +35,7 @@
     </v-row>
 
     <!-- 기본정보 섹션 -->
-    <div class="section-title mt-12">기본 정보</div>
+    <div id="basic-section" class="section-title mt-12">기본 정보</div>
 
     <v-row>
       <v-col cols="12" md="6">

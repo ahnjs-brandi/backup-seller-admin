@@ -62,6 +62,11 @@ export default defineComponent({
       if (this.validBasicForm && this.validImageForm) {
         alert('submit');
       }
+
+      if (!this.validBasicForm) {
+        const el = document.getElementById('basic-section');
+        el?.scrollIntoView({ behavior: 'smooth' });
+      }
     },
   }
 });

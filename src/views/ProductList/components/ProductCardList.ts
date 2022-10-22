@@ -12,9 +12,7 @@ export default defineComponent({
 
   watch: {
     'selected'() {
-      if (this.selected.length !== this.products.length) {
-        this.allSelected = false;
-      }
+      this.allSelected = this.selected.length === this.products.length;
       this.$emit('update:modelValue', this.selected);
     },
     'modelValue'() {
@@ -49,7 +47,18 @@ export default defineComponent({
 
     openStore() {
       window.open("https://www.brandi.co.kr/products/78727614", "_blank")
+    },
+
+    checkItem(id: number) {
+      if (this.selectMode) {
+        if (this.selected.includes(id)) {
+          this.selected = this.selected.filter(item => item !== id);
+        } else {
+          this.selected.push(id);
+        }
+      }
     }
+
   }
 
 });

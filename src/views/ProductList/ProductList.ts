@@ -49,12 +49,6 @@ export default defineComponent({
     }
   },
 
-  // computed: {
-  //   isSelected() {
-  //     // return this.selectedItems.length > 0;
-  //     return this.test;
-  //   }
-  // },
   computed: {
     isSelected() {
       return this.selectedItems.length > 0;

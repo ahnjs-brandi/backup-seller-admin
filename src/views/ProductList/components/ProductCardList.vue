@@ -23,6 +23,7 @@
         @change="toggleAll"
       />
     </v-col>
+
     <v-col
       v-for="item in products"
       :key="item.id"
@@ -33,7 +34,13 @@
     >
       <v-card class="h-100 d-flex flex-column">
         <!-- 상품 이미지 -->
-        <v-img :src="item.img" aspect-ratio="1" cover class="pa-2 flex-grow-0">
+        <v-img
+          :src="item.img"
+          aspect-ratio="1"
+          cover
+          class="pa-2 flex-grow-0"
+          @click="checkItem(item.id)"
+        >
           <div class="d-flex align-start">
             <span class="status-chip" :class="item.exhibition ? 'bg-success' : 'bg-grey-lighten-2 text-charcoal'">
               {{ item.exhibition ? '진열' : '미진열' }}
@@ -51,6 +58,7 @@
               color="secondary"
               class="text-white ma-n2"
               style="text-shadow: 1px 1px 1px rgba(0, 0, 0, .1)"
+              @click="e => e.stopPropagation()"
             />
           </div>
         </v-img>

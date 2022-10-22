@@ -1,7 +1,12 @@
 import { defineComponent } from 'vue';
+import ImageUploadComponent from './components/ImageUploadComponent.vue';
 
 export default defineComponent({
   name: 'ProductDetail',
+
+  components: {
+    ImageUploadComponent
+  },
 
   props: {
     id: { type: String, required: true },
@@ -39,10 +44,6 @@ export default defineComponent({
         v => !!v || '필수입력'
       ],
       required: [v => !!v || '필수입력'],
-      imageRules: [
-        v => v.length < 6 || '최대 5장의 이미지만 등록 가능 합니다.',
-        v => v.length > 0 || '최소 1장의 이미지가 필요 합니다.',
-      ],
     }
   },
 
@@ -55,61 +56,12 @@ export default defineComponent({
 
   methods: {
     submit() {
-      (this.$refs.basicForm as HTMLFormElement).validate();
-      // const child = this.$refs.profile;
-      // child.x();
+      this.$refs.basicForm.validate();
+      this.$refs.imageUploadComponent.$refs.imageForm.validate();
 
       if (this.validBasicForm && this.validImageForm) {
         alert('submit');
       }
     },
-
-    getObjectUrl(file: File) {
-      return URL.createObjectURL(file);
-    },
-
-    removeImage(index: number) {
-      this.product.images.splice(index, 1);
-      this.$refs.imageForm.validate();
-    },
-
-    moveImage(index: number, direction: number) {
-      const temp = this.product.images[index];
-      this.product.images[index] = this.product.images[index + direction];
-      this.product.images[index + direction] = temp;
-    },
-
-    swipe (direction: string, index: number) {
-      if (!this.product.images.length) return;
-
-      if (direction === 'left' && index > 0) {
-        this.moveImage(index, -1);
-      }
-      if (direction === 'right' && (index < this.product.images.length - 1)) {
-        this.moveImage(index, 1);
-      }
-      if (this.$vuetify.display.smAndDown) {
-        if (direction === 'up' && index > 2) {
-          const temp = this.product.images[index];
-          this.product.images[index] = this.product.images[index - 3];
-          this.product.images[index - 3] = temp;
-        }
-        if (direction === 'down' && (this.product.images.length - index > 3)) {
-          const temp = this.product.images[index];
-          this.product.images[index] = this.product.images[index + 3];
-          this.product.images[index + 3] = temp;
-        }
-      }
-    },
-
-    startDrag() {
-      document.documentElement.style.overflow = 'hidden'
-    },
-
-    endDrag() {
-      document.documentElement.style.overflow = 'auto'
-    },
-
-
   }
 });

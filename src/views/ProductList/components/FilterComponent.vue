@@ -119,7 +119,3 @@
 
 
 <script lang="ts" src="./FilterComponent.ts" />
-
-<style lang="scss" scoped>
-//
-</style>

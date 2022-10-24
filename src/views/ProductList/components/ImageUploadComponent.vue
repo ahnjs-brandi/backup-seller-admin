@@ -4,12 +4,6 @@
     <p v-if="$vuetify.display.smAndDown" class="text-body-2 text-secondary mb-4">
       스와이프하여 이미지 순서를 변경할 수 있습니다.
     </p>
-    <p v-if="!this.valid && this.images.length < 1" class="text-error text-body-2 mb-4">
-      이미지는 최소 1장 이상 업로드 해야 됩니다.
-    </p>
-    <p v-if="!this.valid && this.images.length > 5" class="text-error text-body-2 mb-4">
-      최대 5장까지 업로드 할 수 있습니다.
-    </p>
 
     <v-row dense>
       <v-col
@@ -109,9 +103,10 @@
       density="compact"
       hide-details="auto"
       class="mt-6"
+      :rules="imageRules"
     >
       <template v-slot:selection>
-        이미지를 선택해 주세요
+        {{ images.length < 6 ? '이미지를 선택해 주세요' : '최대 5장의 이미지만 등록 가능 합니다.' }}
       </template>
     </v-file-input>
 

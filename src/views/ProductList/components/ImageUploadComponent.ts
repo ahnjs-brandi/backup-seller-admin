@@ -14,8 +14,8 @@ export default defineComponent({
       imgUrls: [] as string[],
       valid: true,
       imageRules: [
-        v => v.length < 6 || '최대 5장의 이미지만 등록 가능 합니다.',
-        v => v.length > 0 || '최소 1장의 이미지가 필요 합니다.',
+        () => this.images.length < 6 || '최대 5장의 이미지만 등록 가능 합니다.',
+        () => this.images.length > 0 || '최소 1장의 이미지가 필요 합니다.',
       ],
     }
   },

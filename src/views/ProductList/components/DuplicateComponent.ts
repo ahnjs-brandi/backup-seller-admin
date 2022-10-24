@@ -12,6 +12,7 @@ export default defineComponent({
     return {
       dialog: this.modelValue,
       searchText: '',
+      timeout: 0,
       products: [] as Product.List[],
       filteredItems: [] as Product.List[],
     }
@@ -19,7 +20,11 @@ export default defineComponent({
 
   watch: {
     'dialog'() {
-      if (!this.dialog) this.$emit('update:modelValue', this.dialog);
+      if (!this.dialog) {
+        this.$emit('update:modelValue', this.dialog)
+      } else {
+        this.reset();
+      }
     },
     'modelValue'() {
       this.dialog = this.modelValue;
@@ -28,27 +33,39 @@ export default defineComponent({
 
   mounted() {
     this.products = mockData.products;
+    this.filteredItems = this.products;
   },
 
   methods: {
     search() {
-      const searchText = this.searchText.toLowerCase();
+      clearTimeout(this.timeout);
 
-      this.filteredItems = this.products.filter(item => {
-        const name = item.name.toLowerCase();
-        const code = item.code;
+      this.timeout = setTimeout(() => {
+        const searchText = this.searchText.toLowerCase();
 
-        return name.indexOf(searchText) > -1 ||
-          code.indexOf(searchText) > -1
-      });
+        this.filteredItems = this.products.filter(item => {
+          const name = item.name.toLowerCase();
+          const code = item.code;
+
+          return name.indexOf(searchText) > -1 ||
+            code.indexOf(searchText) > -1
+        });
+      }, 300);
     },
 
     selectItem(item: Product.List) {
       this.$emit('selectItem', item.id);
-
-      this.searchText = '';
-      this.filteredItems = [];
       this.dialog = false;
     },
+
+    reset() {
+      this.searchText = '';
+      this.filteredItems = this.products;
+    },
+
+    chageKeyword(e) {
+      this.searchText = e.target.value;
+      this.search();
+    }
   }
 });

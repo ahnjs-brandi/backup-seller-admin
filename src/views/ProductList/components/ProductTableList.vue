@@ -10,7 +10,7 @@
             @change="toggleAll"
           />
         </th>
-        <th v-if="selectMode">상품번호</th>
+        <th>상품번호</th>
         <th>대표이미지</th>
         <th>상품명</th>
         <th>판매가</th>
@@ -31,7 +31,7 @@
             color="primary"
           />
         </td>
-        <td v-if="selectMode">{{ item.code }}</td>
+        <td>{{ item.code }}</td>
         <td>
           <v-img :src="item.img" width="70" aspect-ratio="1" cover class="my-2 rounded d-inline-flex" />
         </td>
@@ -71,10 +71,6 @@
           <v-btn variant="plain" size="small">
             <v-icon start>search</v-icon>
             상품링크
-          </v-btn>
-          <v-btn variant="plain" size="small">
-            <v-icon start>edit_note</v-icon>
-            상품수정
           </v-btn>
         </td>
       </tr>

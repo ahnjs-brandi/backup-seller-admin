@@ -32,6 +32,9 @@ declare namespace Product {
     tax: boolean | null;
     delivery: string;
     name: string | null;
-    images: array | null;
+    images: File[] | string[];
+    madeIn: string;
+    codi: string;
+    certification: string;
   }
 }

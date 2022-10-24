@@ -10,6 +10,8 @@ export default defineComponent({
   data() {
     return {
       images: this.modelValue,
+      uploadedImages: [] as File[],
+      imgUrls: [] as string[],
       valid: true,
       imageRules: [
         v => v.length < 6 || '최대 5장의 이미지만 등록 가능 합니다.',
@@ -19,12 +21,25 @@ export default defineComponent({
   },
 
   watch: {
-    'images'() {
-      this.$emit('update:modelValue', this.images);
+    uploadedImages: {
+      handler() {
+        this.images = this.images.concat(this.uploadedImages);
+      },
+      deep: true
+    },
+    images: {
+      handler() {
+        this.setImgUrl();
+        this.valid = this.images.length > 0 && this.images.length < 6;
+      },
+      deep: true
     },
     'valid'() {
       this.$emit('validation', this.valid);
     },
+    'modelValue'() {
+      this.images = this.modelValue;
+    }
   },
 
   methods: {
@@ -73,5 +88,11 @@ export default defineComponent({
     endDrag() {
       document.documentElement.style.overflow = 'auto'
     },
+
+    setImgUrl() {
+      this.imgUrls = this.images.map((img: File | string) => {
+        return (typeof img === 'string') ? img : URL.createObjectURL(img);
+      });
+    }
   }
 });

@@ -1,21 +1,30 @@
 <template>
   <v-form ref="imageForm" v-model="valid">
 
-    <div v-if="$vuetify.display.smAndDown" class="text-body2 text-secondary mb-4">
+    <p v-if="$vuetify.display.smAndDown" class="text-body-2 text-secondary mb-4">
       스와이프하여 이미지 순서를 변경할 수 있습니다.
-    </div>
+    </p>
+    <p v-if="!this.valid && this.images.length < 1" class="text-error text-body-2 mb-4">
+      이미지는 최소 1장 이상 업로드 해야 됩니다.
+    </p>
+    <p v-if="!this.valid && this.images.length > 5" class="text-error text-body-2 mb-4">
+      최대 5장까지 업로드 할 수 있습니다.
+    </p>
 
     <v-row dense>
       <v-col
         cols="4"
+        sm="3"
         md="2"
+        lg="2"
+        xl="1"
         v-for="index in (images.length >= 5 ? images.length : 5)"
         :key="index"
       >
         <!-- 이미지 썸네일 -->
         <v-img
-          :src="images[index - 1] ? getObjectUrl(images[index - 1]) : require('@/assets/no_image.png')"
-          :class="images[index - 1] ? '' : 'no-image'"
+          :src="imgUrls[index - 1] ? imgUrls[index - 1] : require('@/assets/no_image.png')"
+          :class="imgUrls[index - 1] ? '' : 'no-image'"
           :style="index > 5 ? 'opacity: .5; filter: grayscale(100%)' : ''"
           class="image-container"
           cover
@@ -46,10 +55,10 @@
 
               <!-- 삭제 버튼 -->
               <v-btn
-                v-if="images[index - 1]"
+                v-if="imgUrls[index - 1]"
                 icon
                 variant="plain"
-                size="x-small"
+                size="small"
                 color="white"
                 class="delete-btn"
                 style="text-shadow: 1px 1px 1px rgba(0, 0, 0, .3)"
@@ -61,13 +70,12 @@
 
             <!-- 순서 변경 버튼 -->
             <div
-              v-if="images[index - 1] && $vuetify.display.mdAndUp"
+              v-if="imgUrls[index - 1] && $vuetify.display.smAndUp"
               class="move-btns d-flex justify-space-between mt-auto"
             >
               <v-btn
                 icon="arrow_back_ios"
                 variant="plain"
-                size="x-small"
                 color="white"
                 :disabled="index === 1"
                 style="text-shadow: 1px 1px 1px rgba(0, 0, 0, .1)"
@@ -76,9 +84,8 @@
               <v-btn
                 icon="arrow_forward_ios"
                 variant="plain"
-                size="x-small"
                 color="white"
-                :disabled="index === images.length"
+                :disabled="index === imgUrls.length"
                 style="text-shadow: 1px 1px 1px rgba(0, 0, 0, .1)"
                 @click="moveImage(index - 1, 1)"
               />
@@ -90,31 +97,21 @@
 
     <!-- 파일 업로드 필드 -->
     <v-file-input
-      v-model="images"
+      v-model="uploadedImages"
       accept="image/jpeg"
-      label="이미지를 최대 5개까지 선택해주세요"
+      label="이미지를 추가"
       multiple
-      chips
-      closable-chips
       single-line
       prepend-icon=""
-      :prepend-inner-icon="images.length ? '' : 'attach_file'"
+      prepend-inner-icon="attach_file"
       persistent-label
+      :clearable="false"
       density="compact"
       hide-details="auto"
-      :rules="imageRules"
       class="mt-6"
     >
-      <template v-slot:selection="{ fileNames }">
-        <template v-for="fileName in fileNames" :key="fileName">
-          <v-chip
-            size="small"
-            color="primary"
-            class="mr-2"
-          >
-            {{ fileName }}
-          </v-chip>
-        </template>
+      <template v-slot:selection>
+        이미지를 선택해 주세요
       </template>
     </v-file-input>
 

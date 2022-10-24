@@ -11,7 +11,7 @@ export default defineComponent({
   data() {
     return {
       filters: this.modelValue,
-      showFilters: true,
+      showFilters: false,
       date: null,
       exhibitionOptions: [
         { title: '진열 중', value: true },

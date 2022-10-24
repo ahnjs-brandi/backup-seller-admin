@@ -46,7 +46,6 @@
           <v-list-item title="미진열" @click="editSelected('exhibition', false)" />
           <v-list-item title="판매" @click="editSelected('sell', true)" />
           <v-list-item title="미판매 (SOLD OUT)" @click="editSelected('sell', false)" />
-          <v-list-item title="일괄 가격수정" />
           <v-divider />
           <v-list-item title="선택취소" class="text-grey" @click="selectMode = false" />
         </v-list>

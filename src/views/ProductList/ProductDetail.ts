@@ -101,11 +101,11 @@ export default defineComponent({
         tax: true,
         delivery: 'domestic',
         images: [
-          duplicated.img,
           require('@/assets/mock-product-1.jpeg'),
           require('@/assets/mock-product-2.jpeg'),
           require('@/assets/mock-product-3.jpeg'),
           require('@/assets/mock-product-4.jpeg'),
+          require('@/assets/mock-product-5.jpeg'),
         ],
         madeIn: '상품 상세 참조',
         codi: '미사용',

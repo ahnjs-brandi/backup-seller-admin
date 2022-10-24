@@ -143,6 +143,9 @@
     ref="imageUploadComponent"
   />
 
+  <!-- 상품 상세 정보 섹션 -->
+  <div class="section-title mt-12 mb-6">상품 상세 정보</div>
+
   <!-- 하단 액션 -->
   <div class="text-right" style="margin: 80px 0 20px 0">
     <v-btn

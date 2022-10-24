@@ -93,7 +93,7 @@
     <v-file-input
       v-model="uploadedImages"
       accept="image/jpeg"
-      label="이미지를 추가"
+      label="클릭하여 이미지 추가"
       multiple
       single-line
       prepend-icon=""
@@ -102,11 +102,12 @@
       :clearable="false"
       density="compact"
       hide-details="auto"
-      class="mt-6"
+      class="mt-6 cursor-pointer"
+      style="max-width: 500px"
       :rules="imageRules"
     >
       <template v-slot:selection>
-        {{ images.length < 6 ? '이미지를 선택해 주세요' : '최대 5장의 이미지만 등록 가능 합니다.' }}
+        {{ images.length < 6 ? '클릭하여 이미지 추가' : '최대 5장의 이미지만 등록 가능 합니다.' }}
       </template>
     </v-file-input>
 

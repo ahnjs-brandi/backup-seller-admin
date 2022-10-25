@@ -2,6 +2,7 @@ import { defineComponent } from 'vue';
 import ImageUploadComponent from './components/ImageUploadComponent.vue';
 import DuplicateComponent from './components/DuplicateComponent.vue';
 import EditorComponent from './components/EditorComponent.vue';
+import TagComponent from './components/TagComponent.vue';
 import mockData from './mock-data'; // 임시 데이터
 
 export default defineComponent({
@@ -10,7 +11,8 @@ export default defineComponent({
   components: {
     ImageUploadComponent,
     DuplicateComponent,
-    EditorComponent
+    EditorComponent,
+    TagComponent
   },
 
   props: {
@@ -36,14 +38,25 @@ export default defineComponent({
         images: [],
         madeIn: '상품 상세 참조',
         codi: '미사용',
-        certification: 'detail'
+        certification: 'detail',
+        pbType: '해당없음',
+        seasonType: '해당없음',
+        custom: '해당없음',
+        tags: {
+          color: 'na',
+          style: '해당없음',
+          ect: []
+        }
       } as Product.Detail,
+
       category1Options: ['자체제작','아우터','상의','바지','원피스','스커트','신발','가방','주얼리','패션소품','언더웨어','홈웨어','비치웨어','빅사이즈','기타'],
       category2Options: ['티셔츠','셔츠/남방','블라우스','니트/스웨터','후드','맨투맨','나시/민소매','베스트'],
+
       deliveryOptions: [
         { title: '국내배송', value: 'domestic' },
         { title: '해외배송', value: 'overseas' },
       ],
+
       certificationOptions: [
         { title: '상세페이지 참조', value: 'detail' },
         { title: '인증대상', value: 'provide' },
@@ -53,11 +66,18 @@ export default defineComponent({
       // validations
       nameRules: [
         v => !v.includes(`"`) && !v.includes(`'`) || '따옴표 사용 불가',
+        // TODO //
         // v => !/\p{Emoji}/u.test(v) || '이모지 사용 불가',
         v => v.length <= 100 || '100자 이내로 입력해주세요',
         v => !!v || '필수입력'
       ],
       required: [v => !!v || '필수입력'],
+    }
+  },
+
+  watch: {
+    'product.images'() {
+      this.setTags();
     }
   },
 
@@ -95,6 +115,7 @@ export default defineComponent({
       }
     },
 
+    // 선택된 상품 복사
     duplicate(id: number) {
       const duplicated = mockData.products.find(item => item.id === id) as Product.List;
 
@@ -111,8 +132,25 @@ export default defineComponent({
         ],
         madeIn: '상품 상세 참조',
         codi: '미사용',
-        certification: 'detail'
+        certification: 'detail',
+        pbType: '해당없음',
+        seasonType: '봄여름',
+        custom: '해당없음',
+        tags: {
+          color: 'beige',
+          style: '해당없음',
+          ect: []
+        }
       }
+    },
+
+    // 대표 이미지 변경되면 태그 설정
+    setTags() {
+      this.product.tags = {
+        color: 'beige',
+        style: '캐주얼',
+        ect: ['가디건','긴팔','브이넥','오버사이즈','무지','니트','드롭숄더','캐주얼']
+      };
     }
   }
 });

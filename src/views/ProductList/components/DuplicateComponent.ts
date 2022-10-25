@@ -50,7 +50,7 @@ export default defineComponent({
           return name.indexOf(searchText) > -1 ||
             code.indexOf(searchText) > -1
         });
-      }, 300);
+      }, 200);
     },
 
     selectItem(item: Product.List) {

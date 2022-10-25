@@ -1,15 +1,22 @@
 <template>
   <div>
-    <v-btn-toggle
-      v-model="mode"
-      density="compact"
-      color="primary"
-      mandatory
-      class="mb-4"
-    >
-      <v-btn value="editor" >에디터</v-btn>
-      <v-btn value="html">HTML편집</v-btn>
-    </v-btn-toggle>
+    <v-row class="mb-1 d-flex align-end">
+      <v-col cols="12" sm="4">
+        <v-btn-toggle
+          v-model="mode"
+          density="compact"
+          color="primary"
+          mandatory
+        >
+          <v-btn value="editor" >에디터</v-btn>
+          <v-btn value="html">HTML편집</v-btn>
+        </v-btn-toggle>
+      </v-col>
+
+      <v-col cols="12" sm="8">
+        <div class="text-body-2 text-right text-grey">이미지의 권장 사이즈는 가로사이즈 1000px 이상입니다.</div>
+      </v-col>
+    </v-row>
 
     <div v-if="mode === 'editor'" class="editor-wrapper">
       <quill-editor
@@ -17,16 +24,12 @@
         :options="editorOption"
         id="product-content-html"
         :disabled="disabled"
-        @blur="onEditorBlur($event)"
-        @focus="onEditorFocus($event)"
-        @ready="onEditorReady($event)"
-        @change="onEditorChange($event)"
       />
     </div>
 
     <div v-else class="editor-wrapper">
-      <div contenteditable="true" class="html-textarea" @input="updateHTML">
-        {{ content }}
+      <div contenteditable="true" class="html-textarea" @blur="updateHTML">
+        <pre>{{ content }}</pre>
       </div>
     </div>
 
@@ -129,7 +132,7 @@
       }
     }
 
-    // Html 편집 DIV
+  // Html 편집 DIV
   }
   .html-textarea {
     width: 100%;
@@ -142,5 +145,13 @@
     border-radius: 4px;
     background-color: #fafafa;
     resize: none;
+  }
+
+  .ql-snow .ql-tooltip[data-mode=video]::before {
+    content: "유튜브 링크:";
+  }
+
+  .ql-snow .ql-tooltip.ql-editing a.ql-action::after {
+    content: '저장' !important;
   }
 </style>

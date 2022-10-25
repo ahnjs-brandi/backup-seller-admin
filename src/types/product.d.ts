@@ -36,5 +36,13 @@ declare namespace Product {
     madeIn: string;
     codi: string;
     certification: string;
+    pbType: string;
+    seasonType: string;
+    custom: string;
+    tags: {
+      color: string | null;
+      style: string | null;
+      ect: string[];
+    }
   }
 }

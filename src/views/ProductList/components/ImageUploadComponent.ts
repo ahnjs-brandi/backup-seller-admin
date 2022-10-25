@@ -31,6 +31,7 @@ export default defineComponent({
       handler() {
         this.setImgUrl();
         this.valid = this.images.length > 0 && this.images.length < 6;
+        this.$emit('update:modelValue', this.images);
       },
       deep: true
     },

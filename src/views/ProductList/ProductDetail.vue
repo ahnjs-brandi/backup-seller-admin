@@ -1,46 +1,47 @@
 <template>
-  <v-form ref="basicForm" v-model="validBasicForm">
-    <v-row>
-      <v-col cols="12" md="6">
-        <v-btn-toggle
-          v-model="product.exhibition"
-          :color="product.exhibition ? 'secondary' : ''"
-          density="compact"
-          mandatory
-        >
-          <v-btn :value="true" :size="$vuetify.display.mdAndUp ? 'default' : 'small'">진열</v-btn>
-          <v-btn :value="false">미진열</v-btn>
-        </v-btn-toggle>
 
-        <v-btn-toggle
-          v-model="product.sell"
-          :color="product.sell ? 'secondary' : ''"
-          density="compact"
-          mandatory
-          class="ml-6"
-        >
-          <v-btn :value="true" :size="$vuetify.display.mdAndUp ? 'default' : 'small'">판매</v-btn>
-          <v-btn :value="false">SOLD OUT</v-btn>
-        </v-btn-toggle>
-      </v-col>
+  <v-row>
+    <v-col cols="12" md="6">
+      <v-btn-toggle
+        v-model="product.exhibition"
+        :color="product.exhibition ? 'secondary' : ''"
+        density="compact"
+        mandatory
+      >
+        <v-btn :value="true" :size="$vuetify.display.mdAndUp ? 'default' : 'small'">진열</v-btn>
+        <v-btn :value="false">미진열</v-btn>
+      </v-btn-toggle>
 
-      <v-col cols="12" md="6">
-        <div :class="$vuetify.display.mdAndUp ? 'text-right' : ''">
-          <v-btn flat color="grey-lighten-4 text-charcoal" @click="dialogDuplicate = true">
-            <v-icon start>sim_card_download</v-icon>
-            등록된 상품 복사
-          </v-btn>
-        </div>
-      </v-col>
-    </v-row>
+      <v-btn-toggle
+        v-model="product.sell"
+        :color="product.sell ? 'secondary' : ''"
+        density="compact"
+        mandatory
+        class="ml-6"
+      >
+        <v-btn :value="true" :size="$vuetify.display.mdAndUp ? 'default' : 'small'">판매</v-btn>
+        <v-btn :value="false">SOLD OUT</v-btn>
+      </v-btn-toggle>
+    </v-col>
 
-    <!-- 등록된 상품 복사 컴포넌트 -->
-    <DuplicateComponent v-model="dialogDuplicate" @selectItem="(id: number) => duplicate(id)" />
+    <v-col cols="12" md="6">
+      <div :class="$vuetify.display.mdAndUp ? 'text-right' : ''">
+        <v-btn flat color="grey-lighten-4 text-charcoal" @click="dialogDuplicate = true">
+          <v-icon start>sim_card_download</v-icon>
+          등록된 상품 복사
+        </v-btn>
+      </div>
+    </v-col>
+  </v-row>
 
-    <v-row class="mt-16">
+  <!-- 등록된 상품 복사 컴포넌트 -->
+  <DuplicateComponent v-model="dialogDuplicate" @selectItem="(id: number) => duplicate(id)" />
 
+  <v-row class="mt-16">
+    <v-col cols="12" md="6">
       <!-- 상품정보 섹션 -->
-      <v-col cols="12" md="6">
+      <v-form ref="basicForm" v-model="validBasicForm">
+
         <div id="basic-section" class="section-title">상품 정보</div>
 
         <v-row dense>
@@ -90,7 +91,7 @@
             <div class="label">제조국(원산지)</div>
             <v-select
               v-model="product.madeIn"
-              :items="['상품 상세 참조', '한국', '중국', '베트남', '기타']"
+              :items="['상품 상세 참조','한국','중국','베트남','기타']"
               density="compact"
             />
           </v-col>
@@ -98,11 +99,11 @@
             <div class="label">코디 상품 사용 여부</div>
             <v-select
               v-model="product.codi"
-              :items="['미사용', '사용']"
+              :items="['미사용','사용']"
               density="compact"
             />
           </v-col>
-          <v-col cols="6" sm="6">
+          <v-col cols="12" sm="6">
             <div class="label">안전인증정보</div>
             <v-select
               v-model="product.certification"
@@ -113,14 +114,16 @@
             />
           </v-col>
           <template v-if="product.certification === 'provide'">
-            <v-col cols="6" sm="6">
+            <v-col cols="12" sm="6">
+              <div class="label">인증정보 구분</div>
               <v-select
                 value="안전인증 번호"
-                :items="['안전인증 번호', '안전확인 번호', '공급자적합성확인 번호']"
+                :items="['안전인증 번호','안전확인 번호','공급자적합성확인 번호']"
                 density="compact"
               />
             </v-col>
-            <v-col cols="6" sm="6">
+            <v-col cols="12" sm="12">
+              <div class="label">인증번호</div>
               <v-text-field
                 placeholder="인증번호를 입력해주세요."
                 density="compact"
@@ -129,13 +132,40 @@
               />
             </v-col>
           </template>
+          <v-col cols="6" sm="6">
+            <div class="label">PB 구분</div>
+            <v-select
+              v-model="product.pbType"
+              :items="['해당없음','PB','특정매입']"
+              density="compact"
+            />
+          </v-col>
+          <v-col cols="6" sm="6">
+            <div class="label">시즌 구분</div>
+            <v-select
+              v-model="product.seasonType"
+              :items="['해당없음','봄','여름','가을','겨울','봄여름','가을겨울','4계절']"
+              density="compact"
+            />
+          </v-col>
+          <v-col cols="12" sm="12">
+            <div class="label">맞춤제작상품 여부</div>
+            <v-select
+              v-model="product.custom"
+              :items="['해당없음','맞춤제작상품']"
+              density="compact"
+              hint="맞춤제작상품 설정 시, ‘배송준비중’ 상태일 때 취소가 불가능 합니다."
+              persistent-hint
+            />
+          </v-col>
         </v-row>
-      </v-col>
-    </v-row>
-  </v-form>
+
+      </v-form>
+    </v-col>
+  </v-row>
 
   <!-- 상품 이미지 섹션 -->
-  <div class="section-title mt-12 mb-6">상품 이미지</div>
+  <div class="section-title mt-16 mb-6">상품 이미지</div>
 
   <ImageUploadComponent
     v-model="product.images"
@@ -143,8 +173,17 @@
     ref="imageUploadComponent"
   />
 
+  <!-- 검색 설정 섹션 -->
+  <div class="section-title mt-16 mb-6">검색 설정</div>
+
+  <TagComponent
+    v-model:color="product.tags.color"
+    v-model:style="product.tags.style"
+    v-model:ect="product.tags.ect"
+  />
+
   <!-- 상품 상세 정보 섹션 -->
-  <div class="section-title mt-12 mb-6">상품 상세 정보</div>
+  <div class="section-title mt-16 mb-6">상품 상세 정보</div>
 
   <EditorComponent />
 

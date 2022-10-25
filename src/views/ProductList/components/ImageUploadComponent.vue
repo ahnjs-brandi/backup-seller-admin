@@ -19,7 +19,7 @@
         <v-img
           :src="imgUrls[index - 1] ? imgUrls[index - 1] : require('@/assets/no_image.png')"
           :class="imgUrls[index - 1] ? '' : 'no-image'"
-          :style="index > 5 ? 'opacity: .5; filter: grayscale(100%)' : ''"
+          :style="index > 5 ? 'opacity: .6; filter: grayscale(100%)' : ''"
           class="image-container"
           cover
           aspect-ratio="1"
@@ -32,7 +32,7 @@
           @touchstart="startDrag"
           @touchend="endDrag"
         >
-          <div class="h-100 d-flex flex-column">
+          <div class="h-100 d-flex flex-column justify-space-between">
             <div class="d-flex">
               <v-chip
                 v-if="index === 1"
@@ -50,37 +50,40 @@
               <!-- 삭제 버튼 -->
               <v-btn
                 v-if="imgUrls[index - 1]"
-                icon
-                variant="plain"
-                size="small"
-                color="white"
-                class="delete-btn"
-                style="text-shadow: 1px 1px 1px rgba(0, 0, 0, .3)"
+                color="primary-lighten-1"
+                icon="cancel"
+                size="x-small"
+                class="action-btns"
                 @click="removeImage(index - 1)"
-              >
-                <v-icon class="">cancel</v-icon>
-              </v-btn>
+              />
+            </div>
+
+            <div
+              v-if="index > 5"
+              class="bg-grey-darken-2 mx-n1 text-center text-body-2 py-2"
+            >
+              저장되지 않습니다.
             </div>
 
             <!-- 순서 변경 버튼 -->
             <div
               v-if="imgUrls[index - 1] && $vuetify.display.smAndUp"
-              class="move-btns d-flex justify-space-between mt-auto"
+              class="d-flex action-btns justify-space-between"
             >
               <v-btn
-                icon="arrow_back_ios"
-                variant="plain"
-                color="white"
-                :disabled="index === 1"
-                style="text-shadow: 1px 1px 1px rgba(0, 0, 0, .1)"
+                v-if="index > 1"
+                color="primary-lighten-1"
+                icon="arrow_back"
+                size="x-small"
                 @click="moveImage(index - 1, -1)"
               />
+              <span v-else/>
+
               <v-btn
-                icon="arrow_forward_ios"
-                variant="plain"
-                color="white"
-                :disabled="index === imgUrls.length"
-                style="text-shadow: 1px 1px 1px rgba(0, 0, 0, .1)"
+                v-if="index < imgUrls.length"
+                color="primary-lighten-1"
+                icon="arrow_forward"
+                size="x-small"
                 @click="moveImage(index - 1, 1)"
               />
             </div>
@@ -120,13 +123,17 @@
   .no-image{
     opacity: .7;
   }
-  .delete-btn, .move-btns {
+  .action-btns {
     opacity: 0;
     transition: opacity .3s;
   }
 
+  .image-container{
+    padding:4px
+  }
+
   .image-container:hover{
-    .delete-btn, .move-btns {
+    .action-btns {
       opacity: 1;
     }
   }

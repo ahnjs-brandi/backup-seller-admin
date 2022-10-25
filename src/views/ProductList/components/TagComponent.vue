@@ -3,7 +3,7 @@
     <v-col cols="6" md="3">
       <div class="label">색상 필터</div>
 
-      <v-menu>
+      <v-menu max-height="370">
         <template v-slot:activator="{ props }">
           <v-btn
             v-bind="props"

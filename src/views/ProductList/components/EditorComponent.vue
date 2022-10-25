@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row class="mb-1 d-flex align-end">
+    <v-row class="mb-1 d-flex align-end" style="max-width: 1180px">
       <v-col cols="12" sm="4">
         <v-btn-toggle
           v-model="mode"

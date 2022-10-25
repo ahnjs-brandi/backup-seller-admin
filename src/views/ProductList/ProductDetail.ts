@@ -1,6 +1,7 @@
 import { defineComponent } from 'vue';
 import ImageUploadComponent from './components/ImageUploadComponent.vue';
 import DuplicateComponent from './components/DuplicateComponent.vue';
+import EditorComponent from './components/EditorComponent.vue';
 import mockData from './mock-data'; // 임시 데이터
 
 export default defineComponent({
@@ -8,7 +9,8 @@ export default defineComponent({
 
   components: {
     ImageUploadComponent,
-    DuplicateComponent
+    DuplicateComponent,
+    EditorComponent
   },
 
   props: {

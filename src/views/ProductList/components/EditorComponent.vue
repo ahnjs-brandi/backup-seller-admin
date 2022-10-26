@@ -20,7 +20,7 @@
 
     <div v-if="mode === 'editor'" class="editor-wrapper">
       <quill-editor
-        v-model:value="content"
+        v-model:value="contentHtml"
         :options="editorOption"
         id="product-content-html"
         :disabled="disabled"
@@ -29,7 +29,7 @@
 
     <div v-else class="editor-wrapper">
       <div contenteditable="true" class="html-textarea" @blur="updateHTML">
-        <pre>{{ content }}</pre>
+        <pre>{{ contentHtml }}</pre>
       </div>
     </div>
 

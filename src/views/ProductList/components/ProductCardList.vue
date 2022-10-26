@@ -64,7 +64,10 @@
         </v-img>
 
         <v-card-text>
-          <div class="card-title text-link" @click="$router.push(`/product-list/product/${item.id}`)">
+          <a @click="$router.push(`/product-list/product/${item.id}`)" class="text-link">
+            {{ item.code }}
+          </a>
+          <div class="card-title cursor-pointer" @click="$router.push(`/product-list/product/${item.id}`)">
             {{ item.name }}
           </div>
           <div class="card-price">
@@ -87,7 +90,6 @@
               half-increments
               readonly
             />
-            <!-- <v-btn variant="plain" class="ml-n2">12개</v-btn> -->
             <a class="text-link ml-2">
               {{ item.review }}개
             </a>
@@ -123,6 +125,7 @@
 
 <style lang="scss" scoped>
   .card-title {
+    font-size: 16px;
     line-height: 1.5rem;
     overflow: hidden;
     text-overflow: ellipsis;

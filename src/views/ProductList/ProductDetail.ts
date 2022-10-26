@@ -4,6 +4,7 @@ import DuplicateComponent from './components/DuplicateComponent.vue';
 import EditorComponent from './components/EditorComponent.vue';
 import TagComponent from './components/TagComponent.vue';
 import mockData from './mock-data'; // 임시 데이터
+import mockHtml from './mock-html'; // 임시 상세정보 html
 
 export default defineComponent({
   name: 'ProductDetail',
@@ -29,6 +30,7 @@ export default defineComponent({
       product: {
         id: 0,
         name: '',
+        code: '',
         exhibition: true,
         sell: true,
         category1: null,
@@ -46,7 +48,8 @@ export default defineComponent({
           color: 'na',
           style: '해당없음',
           ect: []
-        }
+        },
+        content:'',
       } as Product.Detail,
 
       category1Options: ['자체제작','아우터','상의','바지','원피스','스커트','신발','가방','주얼리','패션소품','언더웨어','홈웨어','비치웨어','빅사이즈','기타'],
@@ -105,6 +108,7 @@ export default defineComponent({
       // 수정페이지 일때
       this.$store.commit('setPageTitle', this.product.name);
       this.getProduct(+this.id);
+      this.product.content = mockHtml.html;
     }
   },
 

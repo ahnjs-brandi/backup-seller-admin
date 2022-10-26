@@ -25,6 +25,7 @@ declare namespace Product {
 	}
   interface Detail {
     id: number;
+    code: string;
     exhibition: boolean | null;
     sell: boolean | null;
     category1: string | null;
@@ -43,6 +44,7 @@ declare namespace Product {
       color: string | null;
       style: string | null;
       ect: string[];
-    }
+    },
+    content: string;
   }
 }

@@ -13,9 +13,13 @@ export default defineComponent({
     quillEditor
   },
 
+  props: {
+    content: { type: String, required: true },
+  },
+
   data() {
     return {
-      content: '',
+      contentHtml: this.content,
       mode: 'editor',
       editorOption: {
         placeholder: '내용을 입력해 주세요',
@@ -37,8 +41,10 @@ export default defineComponent({
     }
   },
 
-  props: {
-    // selectMode: { type: Boolean, required: true },
+  watch: {
+    'content'() {
+      this.contentHtml = this.content;
+    }
   },
 
   mounted() {
@@ -47,7 +53,7 @@ export default defineComponent({
 
   methods: {
     updateHTML(e) {
-      this.content = e.srcElement.innerText;
+      this.contentHtml = e.srcElement.innerText;
     },
   }
 });

@@ -1,5 +1,4 @@
 <template>
-
   <v-row>
     <v-col cols="12" md="6">
       <v-btn-toggle
@@ -25,13 +24,11 @@
       </v-btn-toggle>
     </v-col>
 
-    <v-col cols="12" md="6">
-      <div :class="$vuetify.display.mdAndUp ? 'text-right' : ''">
-        <v-btn color="grey-lighten-4 text-charcoal" @click="dialogDuplicate = true">
-          <v-icon start>sim_card_download</v-icon>
-          등록된 상품 복사
-        </v-btn>
-      </div>
+    <v-col v-if="isCreate" cols="12" md="6" :class="$vuetify.display.mdAndUp ? 'text-right' : ''">
+      <v-btn color="grey-lighten-4 text-charcoal" @click="dialogDuplicate = true">
+        <v-icon start>sim_card_download</v-icon>
+        등록된 상품 복사
+      </v-btn>
     </v-col>
   </v-row>
 
@@ -46,6 +43,14 @@
         <div id="basic-section" class="section-title">상품 정보</div>
 
         <v-row dense>
+          <v-col cols="12" v-if="!isCreate">
+            <div class="label">상품번호</div>
+            <v-text-field
+              v-model="product.code"
+              density="compact"
+              readonly
+            />
+          </v-col>
           <v-col cols="12">
             <div class="label">상품명</div>
             <v-text-field
@@ -186,7 +191,7 @@
   <!-- 상품 상세 정보 섹션 -->
   <div class="section-title mt-16 mb-6">상품 상세 정보</div>
 
-  <EditorComponent />
+  <EditorComponent v-model:content="product.content" />
 
   <!-- 하단 액션 -->
   <div class="text-right" style="margin: 80px 0 20px 0">

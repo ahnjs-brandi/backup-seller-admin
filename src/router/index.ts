@@ -27,9 +27,18 @@ const router = createRouter({
 });
 
 router.beforeEach(function (to, from, next) {
-  // 페이지 타이틀 설정
-  store.commit('setPageTitle', to.meta.title);
-  next();
+  const accessToken = localStorage.getItem('accessToken');
+
+  if (accessToken || to.path === '/login') {
+    // 토큰 있으면
+
+    // 페이지 타이틀 설정
+    store.commit('setPageTitle', to.meta.title);
+    next();
+  } else {
+    // 토큰 없으면
+    next('/login');
+  }
 });
 
 export default router

@@ -22,6 +22,8 @@
         variant="solo"
         density="compact"
         :autofocus="$vuetify.display.mdAndUp"
+        @keydown.enter="login"
+        @input="valid = true"
       />
 
       <v-text-field
@@ -33,7 +35,20 @@
         :append-inner-icon="visibility ? 'visibility_off' : 'visibility'"
         @click:append-inner="visibility = !visibility"
         @keydown.enter="login"
+        @input="valid = true"
       />
+
+      <v-fade-transition hide-on-leave>
+        <v-alert
+          v-if="!valid"
+          type="error"
+          density="compact"
+          variant="outlined"
+          class="mb-5"
+        >
+          아이디 패스워드가 맞지 않습니다.
+        </v-alert>
+      </v-fade-transition>
 
       <v-btn
         color="secondary"

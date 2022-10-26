@@ -4,9 +4,10 @@
     <v-col cols="12" md="6">
       <v-btn-toggle
         v-model="product.exhibition"
-        :color="product.exhibition ? 'secondary' : ''"
+        :color="product.exhibition ? 'primary' : 'error'"
         density="compact"
         mandatory
+        class="elevation-2"
       >
         <v-btn :value="true" :size="$vuetify.display.mdAndUp ? 'default' : 'small'">진열</v-btn>
         <v-btn :value="false">미진열</v-btn>
@@ -14,10 +15,10 @@
 
       <v-btn-toggle
         v-model="product.sell"
-        :color="product.sell ? 'secondary' : ''"
+        :color="product.sell ? 'primary' : 'error'"
         density="compact"
         mandatory
-        class="ml-6"
+        class="ml-6 elevation-2"
       >
         <v-btn :value="true" :size="$vuetify.display.mdAndUp ? 'default' : 'small'">판매</v-btn>
         <v-btn :value="false">SOLD OUT</v-btn>
@@ -26,7 +27,7 @@
 
     <v-col cols="12" md="6">
       <div :class="$vuetify.display.mdAndUp ? 'text-right' : ''">
-        <v-btn flat color="grey-lighten-4 text-charcoal" @click="dialogDuplicate = true">
+        <v-btn color="grey-lighten-4 text-charcoal" @click="dialogDuplicate = true">
           <v-icon start>sim_card_download</v-icon>
           등록된 상품 복사
         </v-btn>
@@ -35,7 +36,7 @@
   </v-row>
 
   <!-- 등록된 상품 복사 컴포넌트 -->
-  <DuplicateComponent v-model="dialogDuplicate" @selectItem="(id: number) => duplicate(id)" />
+  <DuplicateComponent v-model="dialogDuplicate" @selectItem="(id: number) => getProduct(id)" />
 
   <v-row class="mt-16">
     <v-col cols="12" md="6">

@@ -31,7 +31,11 @@
             color="primary"
           />
         </td>
-        <td>{{ item.code }}</td>
+        <td>
+          <a @click="$router.push(`/product-list/product/${item.id}`)" class="text-link">
+            {{ item.code }}
+          </a>
+        </td>
         <td>
           <v-img :src="item.img" width="70" aspect-ratio="1" cover class="my-2 rounded d-inline-flex" />
         </td>
@@ -57,20 +61,20 @@
           </span>
         </td>
         <td>
-          <v-btn v-if="item.review" variant="text" color="primary">{{ item.review }}개</v-btn>
+          <a v-if="item.review" class="text-link">
+            {{ item.review }}개
+          </a>
           <span v-else>-</span>
         </td>
         <td>
           {{ $filters.dateTime(item.createdAt) }}
         </td>
         <td>
-          <v-btn variant="plain" size="small">
-            <v-icon start>bar_chart</v-icon>
+          <v-btn variant="plain" size="small" prepend-icon="bar_chart">
             판매분석
           </v-btn>
-          <v-btn variant="plain" size="small">
-            <v-icon start>search</v-icon>
-            상품링크
+          <v-btn variant="plain" size="small" prepend-icon="search">
+            웹에서보기
           </v-btn>
         </td>
       </tr>

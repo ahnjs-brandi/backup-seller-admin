@@ -35,8 +35,8 @@ export default defineComponent({
     toggleAll() {
       this.selected = this.allSelected ? this.products.map(product => product.id) : [];
     },
-    openProductDetail(product: Product.List) {
-      console.log(product);
+    openProductDetail(id: number) {
+      console.log(id);
       // this.$router.push({ name: 'product-detail', params: { id: product.id } });
     },
   }

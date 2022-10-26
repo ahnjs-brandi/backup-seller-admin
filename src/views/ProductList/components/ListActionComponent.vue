@@ -5,16 +5,10 @@
       :variant="selectMode ? 'tonal' : 'text'"
       class="mr-2"
       color="charcoal"
+      :prepend-icon="selectMode ? 'close' : 'checklist'"
       @click="toggleSelectMode"
     >
-      <template v-if="selectMode">
-        <v-icon start>close</v-icon>
-        취소
-      </template>
-      <template v-else>
-        <v-icon start>checklist</v-icon>
-        선택
-      </template>
+      {{ selectMode ? '취소' : '선택' }}
     </v-btn>
 
     <!-- 상품등록 버튼 -->
@@ -22,10 +16,10 @@
       class="mr-2"
       color="charcoal"
       variant="text"
+      prepend-icon="add"
       :disabled="isSelected"
       @click="$router.push('/product-list/product/create')"
     >
-      <v-icon start>add</v-icon>
       상품추가
     </v-btn>
 
@@ -33,16 +27,10 @@
     <v-btn
       variant="text"
       color="charcoal"
+      :prepend-icon="viewOption === 'list' ? 'call_to_action' : 'view_list'"
       @click="toggleView"
     >
-      <template v-if="viewOption === 'list'">
-        <v-icon start>call_to_action</v-icon>
-        보기변경
-      </template>
-      <template v-else>
-        <v-icon start>view_list</v-icon>
-        보기변경
-      </template>
+      보기변경
     </v-btn>
   </div>
 </template>

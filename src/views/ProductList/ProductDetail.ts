@@ -78,6 +78,9 @@ export default defineComponent({
   watch: {
     'product.images'() {
       this.setTags();
+    },
+    'product.name'() {
+      this.$store.commit('setPageTitle', this.product.name);
     }
   },
 
@@ -95,8 +98,13 @@ export default defineComponent({
 
   mounted() {
     if (this.id === 'create') {
+      // 생성페이지 일때
       this.isCreate = true;
       this.$store.commit('setPageTitle', '상품 추가');
+    } else {
+      // 수정페이지 일때
+      this.$store.commit('setPageTitle', this.product.name);
+      this.getProduct(+this.id);
     }
   },
 
@@ -116,7 +124,7 @@ export default defineComponent({
     },
 
     // 선택된 상품 복사
-    duplicate(id: number) {
+    getProduct(id: number) {
       const duplicated = mockData.products.find(item => item.id === id) as Product.List;
 
       this.product = {

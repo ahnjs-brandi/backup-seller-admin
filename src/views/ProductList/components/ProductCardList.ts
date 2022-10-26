@@ -36,11 +36,6 @@ export default defineComponent({
       return product.price !== product.finalPrice;
     },
 
-    openProductDetail(product: Product.List) {
-      console.log(product);
-      // this.$router.push({ name: 'product-detail', params: { id: product.id } });
-    },
-
     toggleAll() {
       this.selected = this.allSelected ? this.products.map(product => product.id) : [];
     },

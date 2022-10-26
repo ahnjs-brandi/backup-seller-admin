@@ -64,7 +64,7 @@
         </v-img>
 
         <v-card-text>
-          <div class="card-title">
+          <div class="card-title text-link" @click="$router.push(`/product-list/product/${item.id}`)">
             {{ item.name }}
           </div>
           <div class="card-price">
@@ -87,15 +87,31 @@
               half-increments
               readonly
             />
-            <v-btn variant="plain" class="ml-n2">12개</v-btn>
+            <!-- <v-btn variant="plain" class="ml-n2">12개</v-btn> -->
+            <a class="text-link ml-2">
+              {{ item.review }}개
+            </a>
+
           </div>
         </v-card-text>
 
         <v-card-actions class="mt-n4">
           <v-spacer />
-          <v-btn color="charcoal">판매분석</v-btn>
-          <v-btn @click="openStore" color="charcoal">상품링크</v-btn>
-          <v-btn @click="openProductDetail" color="charcoal">상품수정</v-btn>
+          <v-btn
+            size="small"
+            color="primary"
+            prepend-icon="bar_chart"
+          >
+            판매분석
+          </v-btn>
+          <v-btn
+            size="small"
+            color="primary"
+            prepend-icon="search"
+            @click="openStore"
+          >
+            웹에서보기
+          </v-btn>
         </v-card-actions>
 
       </v-card>

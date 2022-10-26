@@ -1,4 +1,5 @@
 $primary: #384787;
+$primary-lighten: #5867A7;
 $secondary: #65a4f1;
 $charcoal: #666666;
 $error: #F4516C;
@@ -28,6 +29,17 @@ $warning: #FFC107;
 .label{
   font-size: 0.75rem;
   line-height: 1.25rem;
+}
+
+.text-link{
+  color: $primary-lighten !important;
+  font-weight: 500;
+  transition: all .3s;
+  cursor: pointer;
+  &:hover{
+    color: $primary-lighten !important;
+    text-decoration: underline;
+  }
 }
 
 .ink-color {

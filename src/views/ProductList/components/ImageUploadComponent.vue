@@ -39,7 +39,7 @@
                 variant="elevated"
                 color="secondary"
                 size="x-small"
-                class="ma-2"
+                class="ma-1"
                 style="padding-top: 1px"
               >
                 대표 이미지

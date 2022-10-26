@@ -101,14 +101,6 @@
               density="compact"
             />
           </v-col>
-          <v-col cols="6" sm="6">
-            <div class="label">코디 상품 사용 여부</div>
-            <v-select
-              v-model="product.codi"
-              :items="['미사용','사용']"
-              density="compact"
-            />
-          </v-col>
           <v-col cols="12" sm="6">
             <div class="label">안전인증정보</div>
             <v-select
@@ -155,13 +147,20 @@
             />
           </v-col>
           <v-col cols="12" sm="12">
-            <div class="label">맞춤제작상품 여부</div>
-            <v-select
-              v-model="product.custom"
-              :items="['해당없음','맞춤제작상품']"
-              density="compact"
-              hint="맞춤제작상품 설정 시, ‘배송준비중’ 상태일 때 취소가 불가능 합니다."
-              persistent-hint
+            <v-checkbox
+              v-model="product.custom1"
+              label="맞춤제작상품"
+              color="primary"
+              class="my-n3"
+              hide-details
+            />
+            <div class="text-body-2 text-grey ml-3 mb-6">* 맞춤제작상품 설정 시, ‘배송준비중’ 상태일 때 취소가 불가능 합니다.</div>
+            <v-checkbox
+              v-model="product.codi1"
+              label="코디 상품 사용"
+              color="primary"
+              class="my-n3"
+              hide-details
             />
           </v-col>
         </v-row>
@@ -192,6 +191,11 @@
   <div class="section-title mt-16 mb-6">상품 상세 정보</div>
 
   <EditorComponent v-model:content="product.content" />
+
+  <!-- 실측 사이즈 섹션 -->
+  <div class="section-title mt-16 mb-6">실측 사이즈정보</div>
+
+  <SizeComponent />
 
   <!-- 하단 액션 -->
   <div class="text-right" style="margin: 80px 0 20px 0">

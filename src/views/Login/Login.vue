@@ -59,6 +59,13 @@
         로그인
       </v-btn>
 
+      <v-fade-transition hide-on-leave>
+        <div v-if="count > 1" class="mt-4" style="">
+          <div style="user-select:none">{{ count }}번 틀렸습니다.</div>
+          <span v-for="n in count-1" :key="n" :style="`font-size: ${10 + count*3}px; user-select:none; margin: 0 .1em`">🍩</span>
+        </div>
+      </v-fade-transition>
+
       <div class="d-flex align-center login-bottom">
         <v-checkbox
           v-model="remember"
@@ -86,7 +93,6 @@
         브랜디 입점문의
       </v-btn>
     </div>
-
   </div>
 </template>
 

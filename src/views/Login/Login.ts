@@ -7,6 +7,7 @@ export default defineComponent({
     return {
       username: localStorage.getItem('rememberUserId') === 'true' ? localStorage.getItem('userId') : '',
       password: '',
+      count: 0,
       valid: true,
       remember: localStorage.getItem('rememberUserId') === 'true',
       showPassword: false,
@@ -37,6 +38,7 @@ export default defineComponent({
         this.$router.push('/');
       } else {
         this.valid = false;
+        this.count++;
       }
     },
 

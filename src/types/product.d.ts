@@ -35,11 +35,11 @@ declare namespace Product {
     name: string | null;
     images: File[] | string[];
     madeIn: string;
-    codi: string;
+    codi: boolean;
     certification: string;
     pbType: string;
     seasonType: string;
-    custom: string;
+    custom: boolean;
     tags: {
       color: string | null;
       style: string | null;

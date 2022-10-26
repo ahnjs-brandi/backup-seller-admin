@@ -3,6 +3,8 @@ import ImageUploadComponent from './components/ImageUploadComponent.vue';
 import DuplicateComponent from './components/DuplicateComponent.vue';
 import EditorComponent from './components/EditorComponent.vue';
 import TagComponent from './components/TagComponent.vue';
+import SizeComponent from './components/SizeComponent.vue';
+
 import mockData from './mock-data'; // 임시 데이터
 import mockHtml from './mock-html'; // 임시 상세정보 html
 
@@ -13,7 +15,8 @@ export default defineComponent({
     ImageUploadComponent,
     DuplicateComponent,
     EditorComponent,
-    TagComponent
+    TagComponent,
+    SizeComponent,
   },
 
   props: {
@@ -39,11 +42,11 @@ export default defineComponent({
         delivery: 'domestic',
         images: [],
         madeIn: '상품 상세 참조',
-        codi: '미사용',
+        codi: false,
         certification: 'detail',
         pbType: '해당없음',
         seasonType: '해당없음',
-        custom: '해당없음',
+        custom: false,
         tags: {
           color: 'na',
           style: '해당없음',
@@ -143,11 +146,11 @@ export default defineComponent({
           require('@/assets/mock-product-5.jpeg'),
         ],
         madeIn: '상품 상세 참조',
-        codi: '미사용',
+        codi: false,
         certification: 'detail',
         pbType: '해당없음',
         seasonType: '봄여름',
-        custom: '해당없음',
+        custom: false,
         tags: {
           color: 'beige',
           style: '해당없음',

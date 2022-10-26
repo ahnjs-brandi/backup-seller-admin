@@ -95,6 +95,7 @@
   #product-content-html {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
+    height: calc(100% - 44px);
 
     .ql-editor {
       max-width: 1160px;

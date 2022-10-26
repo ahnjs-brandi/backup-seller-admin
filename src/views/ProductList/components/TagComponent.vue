@@ -48,15 +48,16 @@
     <v-col cols="12" md="12">
       <div class="label">검색 태그</div>
       <div>
-        <v-chip v-for="tag in ectTags" :key="tag" class="ma-1" color="primary">
-          {{ tag }}
-          <v-icon size="small" class="ml-2 mr-n1" @click="removeTag(tag)">cancel</v-icon>
-        </v-chip>
+        <div v-if="ectTags.length" class="mb-2">
+          <v-chip v-for="tag in ectTags" :key="tag" class="ma-1" color="primary">
+            {{ tag }}
+            <v-icon size="small" class="ml-2 mr-n1" @click="removeTag(tag)">cancel</v-icon>
+          </v-chip>
+        </div>
         <v-text-field
           v-model="newTag"
           placeholder="태그 추가"
           density="compact"
-          class="mt-2"
           style="max-width: 400px"
           :error-messages="tagErrorMessages"
           @keydown.enter="addTag($event)"

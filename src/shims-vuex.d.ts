@@ -3,9 +3,11 @@ import { ComponentCustomProperties } from 'vue'
 import { Store } from 'vuex'
 
 declare module '@vue/runtime-core' {
-  // Declare your own store states.
   interface State {
-    count: number
+    drawer: true,
+    loading: false,
+    pageTitle: '',
+    demoDialog: false,
   }
 
   interface ComponentCustomProperties {

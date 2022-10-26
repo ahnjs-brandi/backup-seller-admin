@@ -26,6 +26,8 @@
     </v-col>
   </v-row>
 
+  {{$store.getters.demoDialog}}
+
   <v-row align="center" class="mb-2" dense>
     <v-col cols="12" md="4" style="min-height: 32px">
       <div v-if="!selectedItems.length" class="font-weight-medium">

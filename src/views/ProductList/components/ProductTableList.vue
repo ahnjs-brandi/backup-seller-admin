@@ -61,7 +61,7 @@
           </span>
         </td>
         <td>
-          <a v-if="item.review" class="text-link">
+          <a v-if="item.review" class="text-link" @click="$store.commit('openDemoDialog')">
             {{ item.review }}개
           </a>
           <span v-else>-</span>

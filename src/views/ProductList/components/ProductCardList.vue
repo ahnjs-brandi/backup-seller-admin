@@ -103,6 +103,7 @@
             size="small"
             color="primary"
             prepend-icon="bar_chart"
+            @click="$store.commit('openDemoDialog')"
           >
             판매분석
           </v-btn>

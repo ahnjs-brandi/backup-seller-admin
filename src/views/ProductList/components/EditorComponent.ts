@@ -20,6 +20,7 @@ export default defineComponent({
   data() {
     return {
       contentHtml: this.content,
+      fold: true,
       mode: 'editor',
       editorOption: {
         placeholder: '내용을 입력해 주세요',
@@ -28,7 +29,6 @@ export default defineComponent({
             ['bold', 'italic', 'underline', 'strike'],
             [{ header: 1 }, { header: 2 }],
             [{ list: 'ordered' }, { list: 'bullet' }],
-            [{ indent: '-1' }, { indent: '+1' }],
             [{ header: [1, 2, 3, 4, 5, 6, false] }],
             [{ color: [] }, { background: [] }],
             [{ font: ['NotoSansKR', 'NanumSquare', 'NotoSerifKR'] }],
@@ -39,16 +39,6 @@ export default defineComponent({
       },
       disabled: false
     }
-  },
-
-  watch: {
-    'content'() {
-      this.contentHtml = this.content;
-    }
-  },
-
-  mounted() {
-    //
   },
 
   methods: {

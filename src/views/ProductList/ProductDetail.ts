@@ -33,6 +33,7 @@ export default defineComponent({
       product: {
         id: 0,
         name: '',
+        description: '',
         code: '',
         exhibition: true,
         sell: true,
@@ -72,10 +73,22 @@ export default defineComponent({
       // validations
       nameRules: [
         v => !v.includes(`"`) && !v.includes(`'`) || '따옴표 사용 불가',
-        // TODO //
-        // v => !/\p{Emoji}/u.test(v) || '이모지 사용 불가',
         v => v.length <= 100 || '100자 이내로 입력해주세요',
-        v => !!v || '필수입력'
+        v => !!v || '필수입력',
+        v => {
+          const unified_emoji_ranges = ['\ud83c[\udf00-\udfff]','\ud83d[\udc00-\ude4f]','\ud83d[\ude80-\udeff]'];
+          const reg = new RegExp(unified_emoji_ranges.join('|'), 'g');
+          return !v.match(reg) || '이모지 사용 불가';
+        },
+      ],
+      descriptionRules: [
+        v => !v.includes(`"`) && !v.includes(`'`) || '따옴표 사용 불가',
+        v => v.length <= 100 || '100자 이내로 입력해주세요',
+        v => {
+          const unified_emoji_ranges = ['\ud83c[\udf00-\udfff]','\ud83d[\udc00-\ude4f]','\ud83d[\ude80-\udeff]'];
+          const reg = new RegExp(unified_emoji_ranges.join('|'), 'g');
+          return !v.match(reg) || '이모지 사용 불가';
+        },
       ],
       required: [v => !!v || '필수입력'],
     }
@@ -102,7 +115,7 @@ export default defineComponent({
     }
   },
 
-  mounted() {
+  created() {
     if (this.id === 'create') {
       // 생성페이지 일때
       this.isCreate = true;
@@ -126,7 +139,12 @@ export default defineComponent({
 
       if (!this.validBasicForm) {
         const el = document.getElementById('basic-section');
-        el?.scrollIntoView({ behavior: 'smooth' });
+        return el?.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      if (!this.validImageForm) {
+        const el = document.getElementById('image-section');
+        return el?.scrollIntoView({ behavior: 'smooth' });
       }
     },
 
@@ -136,6 +154,8 @@ export default defineComponent({
 
       this.product = {
         ...duplicated,
+        name: '(복사본) ' + duplicated.name,
+        description: '',
         tax: true,
         delivery: 'domestic',
         images: [
@@ -151,6 +171,7 @@ export default defineComponent({
         pbType: '해당없음',
         seasonType: '봄여름',
         custom: false,
+        content: '',
         tags: {
           color: 'beige',
           style: '해당없음',

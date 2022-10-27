@@ -7,7 +7,7 @@
       {{ $store.getters.pageTitle }}
     </v-toolbar-title>
 
-    <v-spacer/>
+    <v-spacer v-if="$vuetify.display.mdAndUp && !safari" />
 
     <!-- 전체화면 토글 버튼 -->
     <v-btn

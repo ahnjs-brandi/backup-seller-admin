@@ -46,9 +46,11 @@
           <v-col cols="12" v-if="!isCreate">
             <div class="label">상품번호</div>
             <v-text-field
+              autofocus
               v-model="product.code"
               density="compact"
               readonly
+              @focus="e => e.target.blur()"
             />
           </v-col>
           <v-col cols="12">
@@ -56,10 +58,21 @@
             <v-text-field
               v-model="product.name"
               density="compact"
-              counter="60"
+              counter="100"
               placeholder="상품명을 입력해주세요."
               :rules="nameRules"
               @blur="product.name = product.name!.trim()"
+            />
+          </v-col>
+          <v-col cols="12">
+            <div class="label">한줄 상품 설명</div>
+            <v-text-field
+              v-model="product.description"
+              density="compact"
+              counter="100"
+              placeholder="상품설명을 입력해 주세요."
+              :rules="descriptionRules"
+              @blur="product.description = product.description!.trim()"
             />
           </v-col>
           <v-col cols="6" sm="6">
@@ -170,7 +183,7 @@
   </v-row>
 
   <!-- 상품 이미지 섹션 -->
-  <div class="section-title mt-16 mb-6">상품 이미지</div>
+  <div id="image-section" class="section-title mt-16 mb-6">상품 이미지</div>
 
   <ImageUploadComponent
     v-model="product.images"
@@ -190,12 +203,16 @@
   <!-- 상품 상세 정보 섹션 -->
   <div class="section-title mt-16 mb-6">상품 상세 정보</div>
 
-  <EditorComponent v-model:content="product.content" />
+  <div class="limit-width">
+    <EditorComponent v-model:content="product.content" />
+  </div>
 
   <!-- 실측 사이즈 섹션 -->
   <div class="section-title mt-16 mb-6">실측 사이즈정보</div>
 
-  <SizeComponent />
+  <div class="limit-width">
+    <SizeComponent />
+  </div>
 
   <!-- 하단 액션 -->
   <div class="text-right" style="margin: 80px 0 20px 0">
@@ -210,13 +227,12 @@
     </v-btn>
     <v-btn
       color="primary"
-      style="width: 128px"
       flat
       :class="$vuetify.display.mdAndUp ? '' : 'w-100'"
       :size="$vuetify.display.mdAndUp ? 'default' : 'large'"
       @click="submit"
     >
-      저장
+      {{ isCreate ? '저장하고 가격설정 하기' : '저장' }}
     </v-btn>
   </div>
 </template>

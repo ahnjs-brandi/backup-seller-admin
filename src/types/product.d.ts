@@ -32,7 +32,8 @@ declare namespace Product {
     category2: string | null;
     tax: boolean | null;
     delivery: string;
-    name: string | null;
+    name: string;
+    description: string;
     images: File[] | string[];
     madeIn: string;
     codi: boolean;

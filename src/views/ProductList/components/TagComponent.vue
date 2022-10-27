@@ -54,15 +54,25 @@
             <v-icon size="small" class="ml-2 mr-n1" @click="removeTag(tag)">cancel</v-icon>
           </v-chip>
         </div>
-        <v-text-field
-          v-model="newTag"
-          placeholder="태그 추가"
-          density="compact"
-          style="max-width: 400px"
-          :error-messages="tagErrorMessages"
-          @keydown.enter="addTag($event)"
-          @input="tagErrorMessages = []"
-        />
+        <div class="d-flex align-start" style="max-width: 400px">
+          <v-text-field
+            v-model="newTag"
+            placeholder="태그 추가"
+            density="compact"
+            :error-messages="tagErrorMessages"
+            @keydown.enter="addTag($event)"
+            @input="tagErrorMessages = []"
+          />
+          <v-btn
+            v-if="$vuetify.display.mdAndDown"
+            class="ml-2"
+            color="primary"
+            style="height: 40px"
+            @click="addTag"
+          >
+            추가
+          </v-btn>
+        </div>
       </div>
     </v-col>
   </v-row>

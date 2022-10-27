@@ -69,9 +69,12 @@ export default defineComponent({
     removeTag(tag: string) {
       this.ectTags = this.ectTags.filter(t => t !== tag);
     },
-    addTag(event) {
-      // Chrome IME 299 버그로 인해 keydown 이벤트가 발생하지 않는 문제가 있음
-      if (event.isComposing || event.keyCode === 229) return;
+    addTag(event?) {
+
+      if (event) {
+        // Chrome IME 299 버그로 인해 keydown 이벤트가 발생하지 않는 문제가 있음
+        if (event.isComposing || event.keyCode === 229) return;
+      }
 
       if (!this.newTag.length) return;
 

@@ -53,7 +53,7 @@ export default defineComponent({
       // if()
 
       // return `${Math.floor(price / 10000)}만 원`;
-      return '';
+      return price;
     }
   }
 });

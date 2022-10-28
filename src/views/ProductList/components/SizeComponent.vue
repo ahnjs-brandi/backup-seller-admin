@@ -19,9 +19,9 @@
 
       <v-col cols="12" sm="6" md="9">
         <div class="text-body-2 text-grey mb-4">*단위 mm</div>
-        <v-row dense v-for="n in sizeCount" :key="n">
+        <v-row dense v-for="n in sizeCount" :key="n" class="mb-4">
           <v-col cols="3" md="2">
-            <v-text-field label="사이즈" min="0" placeholder="ex) XL" variant="underlined" density="compact" hide-details />
+            <v-text-field label="사이즈" min="0" placeholder="ex) XL" variant="underlined" density="compact" hide-details :ref="`size${n}`" />
           </v-col>
           <v-col cols="3" md="1">
             <v-text-field type="number" label="총장" min="0" step="10" variant="underlined" density="compact" hide-details />
@@ -42,15 +42,17 @@
             <v-text-field type="number" label="암홀" min="0" step="10" variant="underlined" density="compact" hide-details />
           </v-col>
           <v-col cols="3" md="1">
-            <v-text-field type="number" label="밑단" min="0" step="10" variant="underlined" density="compact" hide-details />
+            <v-text-field type="number" label="밑단" min="0" step="10" variant="underlined" density="compact" hide-details @keydown.enter="addSize" />
           </v-col>
         </v-row>
+
+        <!-- 추가/제거 버튼 -->
         <v-btn color="primary" variant="text" icon="add_circle" size="small" @click="sizeCount++" />
-        <v-btn v-if="sizeCount > 1" color="primary" variant="text" icon="remove_circle" size="small" @click="sizeCount--" />
+        <v-btn :disabled="sizeCount <= 1" color="primary" variant="text" icon="remove_circle" size="small" @click="sizeCount--" />
 
         <div class="mt-4" style="overflow-x: auto">
           <v-radio-group :value="1" inline color="primary" hide-details>
-            <div class="ma-3 font-weight-bold flex-shrink-0">안감</div>
+            <div class="my-3 mr-3 font-weight-bold flex-shrink-0">안감</div>
             <v-radio label="해당없음" value="1" class="mr-4" />
             <v-radio label="있음" value="2" class="mr-4" />
             <v-radio label="없음" value="3" class="mr-4" />
@@ -58,7 +60,7 @@
           </v-radio-group>
 
           <v-radio-group :value="1" inline color="primary" hide-details>
-            <div class="ma-3 font-weight-bold flex-shrink-0">촉감</div>
+            <div class="my-3 mr-3 font-weight-bold flex-shrink-0">촉감</div>
             <v-radio label="해당없음" value="1" class="mr-4" />
             <v-radio label="부드러움" value="2" class="mr-4" />
             <v-radio label="보통" value="3" class="mr-4" />
@@ -66,7 +68,7 @@
           </v-radio-group>
 
           <v-radio-group :value="1" inline color="primary" hide-details>
-            <div class="ma-3 font-weight-bold flex-shrink-0">핏감</div>
+            <div class="my-3 mr-3 font-weight-bold flex-shrink-0">핏감</div>
             <v-radio label="해당없음" value="1" class="mr-4" />
             <v-radio label="타이트" value="2" class="mr-4" />
             <v-radio label="정사이즈" value="3" class="mr-4" />
@@ -74,7 +76,7 @@
           </v-radio-group>
 
           <v-radio-group :value="1" inline color="primary" hide-details>
-            <div class="ma-3 font-weight-bold flex-shrink-0">두께감</div>
+            <div class="my-3 mr-3 font-weight-bold flex-shrink-0">두께감</div>
             <v-radio label="해당없음" value="1" class="mr-4" />
             <v-radio label="도톰" value="2" class="mr-4" />
             <v-radio label="보통" value="3" class="mr-4" />

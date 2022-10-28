@@ -36,7 +36,16 @@ export default defineComponent({
     }
   },
 
-  methods: {
+  mounted() {
     //
+  },
+
+  methods: {
+    addSize() {
+      this.sizeCount++;
+      setTimeout(() => {
+        this.$refs[`size${this.sizeCount}`][0].focus()
+      }, 100);
+    }
   }
 });

@@ -4,6 +4,7 @@ import ImageUploadComponent from './components/ImageUploadComponent.vue';
 import EditorComponent from './components/EditorComponent.vue';
 import TagComponent from './components/TagComponent.vue';
 import SizeComponent from './components/SizeComponent.vue';
+import PriceComponent from './components/PriceComponent.vue';
 
 export default defineComponent({
   name: 'ProductDetail',
@@ -14,6 +15,7 @@ export default defineComponent({
     EditorComponent,
     TagComponent,
     SizeComponent,
+    PriceComponent,
   },
 
   props: {

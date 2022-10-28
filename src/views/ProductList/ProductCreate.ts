@@ -24,7 +24,7 @@ export default defineComponent({
         { title: '상품정보', value: 1 },
         { title: '이미지/태그', value: 2 },
         { title: '상세정보', value: 3 },
-        { title: '가격/옵션', value: 4 },
+        { title: '판매정보', value: 4 },
       ],
     }
   },

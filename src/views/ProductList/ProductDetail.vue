@@ -9,21 +9,23 @@
       <v-tab value="settings">상품정보</v-tab>
       <v-tab value="images">이미지/태그</v-tab>
       <v-tab value="editor">상세정보</v-tab>
-      <v-tab value="price">가격/옵션</v-tab>
+      <v-tab value="price">판매정보</v-tab>
     </v-tabs>
 
-    <div class="pt-16">
-      <!-- 상품정보 컴포넌트 -->
+    <div class="pt-12">
+      <!-- 상품정보 탭 -->
       <SettingsComponent v-if="tab === 'settings'" ref="settings" :id="Number(id)" />
 
-      <!-- 이미지/태그 컴포넌트 -->
+      <!-- 이미지/태그 탭 -->
       <ImageUploadComponent v-if="tab === 'images'" ref="images" :id="Number(id)" />
       <TagComponent v-if="tab === 'images'" class="mt-8" :id="Number(id)" />
 
-      <!-- 상세정보 컴포넌트 -->
+      <!-- 상세정보 탭 -->
       <EditorComponent v-if="tab === 'editor'" ref="editor" :id="Number(id)" />
       <SizeComponent v-if="tab === 'editor'" class="mt-8" :id="Number(id)" />
 
+      <!-- 판매정보 탭 -->
+      <PriceComponent v-if="tab === 'price'" ref="price" :id="Number(id)" />
 
     </div>
 

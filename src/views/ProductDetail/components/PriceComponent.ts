@@ -48,12 +48,16 @@ export default defineComponent({
 
   methods: {
     priceToText(price: number) {
-      // const text = '';
-      // const man =
-      // if()
+      let text = '';
+      const man = Math.floor(price / 10000);
+      const chun = price % 10000;
 
-      // return `${Math.floor(price / 10000)}만 원`;
-      return price;
+      if (!man && !chun) return '';
+
+      if (man) text += `${man}만`;
+      if (chun) text += ` ${chun}`;
+
+      return `${text}원`;
     }
   }
 });

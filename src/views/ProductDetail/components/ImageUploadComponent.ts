@@ -32,7 +32,7 @@ export default defineComponent({
       handler() {
         this.setImgUrl();
 
-        if (!this.create) {
+        if (this.create) {
           this.$store.commit('productImages', this.images);
         }
       },

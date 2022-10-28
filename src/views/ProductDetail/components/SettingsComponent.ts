@@ -53,7 +53,7 @@ export default defineComponent({
   watch: {
     settings: {
       handler() {
-        if (!this.create) {
+        if (this.create) {
           this.$store.commit('productSettings', this.settings);
         }
       },

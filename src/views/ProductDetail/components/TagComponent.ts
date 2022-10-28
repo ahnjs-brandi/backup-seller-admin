@@ -62,7 +62,7 @@ export default defineComponent({
   watch: {
     'tags': {
       handler() {
-        if (!this.create) {
+        if (this.create) {
           this.$store.commit('productTags', this.tags);
         }
       },

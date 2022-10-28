@@ -3,16 +3,12 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'ImageUploadComponent',
 
-  props: {
-    modelValue: { type: Array as () => File[], required: true },
-  },
-
   data() {
     return {
-      images: this.modelValue,
-      uploadedImages: [] as File[],
+      images: [],
+      settings: this.$store.getters.productSettings || {},
+      newImages: [] as File[],
       imgUrls: [] as string[],
-      valid: true,
       imageRules: [
         () => this.images.length < 6 || '최대 5장의 이미지만 등록 가능 합니다.',
         () => this.images.length > 0 || '최소 1장의 이미지가 필요 합니다.',
@@ -21,27 +17,31 @@ export default defineComponent({
   },
 
   watch: {
-    uploadedImages: {
+    newImages: {
       handler() {
-        this.images = this.images.concat(this.uploadedImages);
+        this.images = this.images.concat(this.newImages);
       },
       deep: true
     },
     images: {
       handler() {
         this.setImgUrl();
-        this.valid = this.images.length > 0 && this.images.length < 6;
-        this.$emit('update:modelValue', this.images);
+        this.$store.commit('productImages', this.images);
       },
       deep: true
     },
-    'valid'() {
-      this.$emit('validation', this.valid);
-    },
-    'modelValue'() {
-      this.images = this.modelValue;
+  },
+
+  mounted() {
+    if (this.$store.getters.productImages.length) {
+      // 스토어에 저장된 상품정보가 있으면 불러옴
+      this.images = this.$store.getters.productImages;
+    } else if (this.settings.duplicateProductId) {
+      // 복제된 상품이 있으면 불러옴
+      this.duplicateImages(this.settings.duplicateProductId);
     }
   },
+
 
   methods: {
     getObjectUrl(file: File) {
@@ -50,7 +50,7 @@ export default defineComponent({
 
     removeImage(index: number) {
       this.images.splice(index, 1);
-      this.$refs.imageForm.validate();
+      this.$refs.form.validate();
     },
 
     moveImage(index: number, direction: number) {
@@ -94,6 +94,18 @@ export default defineComponent({
       this.imgUrls = this.images.map((img: File | string) => {
         return (typeof img === 'string') ? img : URL.createObjectURL(img);
       });
-    }
+    },
+
+    duplicateImages(id: number) {
+      console.log('duplicateId', id);
+
+      this.images = [
+        require('@/assets/mock-product-3.jpeg'),
+        require('@/assets/mock-product-2.jpeg'),
+        require('@/assets/mock-product-4.jpeg'),
+        require('@/assets/mock-product-5.jpeg'),
+        require('@/assets/mock-product-6.jpeg'),
+      ]
+    },
   }
 });

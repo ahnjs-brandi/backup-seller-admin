@@ -2,7 +2,7 @@ import { defineComponent } from 'vue';
 import mockData from '../mock-data'; // 임시 데이터
 
 export default defineComponent({
-  name: 'DuplicateComponent',
+  name: 'ProductSearchComponent',
 
   props: {
     modelValue: { type: Boolean, required: true },
@@ -38,19 +38,15 @@ export default defineComponent({
 
   methods: {
     search() {
-      clearTimeout(this.timeout);
+      const searchText = this.searchText.toLowerCase();
 
-      this.timeout = setTimeout(() => {
-        const searchText = this.searchText.toLowerCase();
+      this.filteredItems = this.products.filter(item => {
+        const name = item.name.toLowerCase();
+        const code = item.code;
 
-        this.filteredItems = this.products.filter(item => {
-          const name = item.name.toLowerCase();
-          const code = item.code;
-
-          return name.indexOf(searchText) > -1 ||
-            code.indexOf(searchText) > -1
-        });
-      }, 200);
+        return name.indexOf(searchText) > -1 ||
+          code.indexOf(searchText) > -1
+      });
     },
 
     selectItem(item: Product.List) {
@@ -63,8 +59,10 @@ export default defineComponent({
       this.filteredItems = this.products;
     },
 
-    chageKeyword(e) {
-      this.searchText = e.target.value;
+    chageKeyword(event) {
+      if (event.isComposing || event.keyCode === 229) return;
+
+      this.searchText = event.target.value;
       this.search();
     }
   }

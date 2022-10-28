@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue';
 import ImageUploadComponent from './components/ImageUploadComponent.vue';
-import DuplicateComponent from './components/DuplicateComponent.vue';
+import DuplicateComponent from './components/ProductSearchComponent.vue';
 import EditorComponent from './components/EditorComponent.vue';
 import TagComponent from './components/TagComponent.vue';
 import SizeComponent from './components/SizeComponent.vue';

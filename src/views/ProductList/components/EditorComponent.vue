@@ -8,7 +8,7 @@
           color="primary"
           mandatory
         >
-          <v-btn value="editor" >에디터</v-btn>
+          <v-btn value="editor" ref="test">에디터</v-btn>
           <v-btn value="html">HTML편집</v-btn>
         </v-btn-toggle>
 
@@ -16,7 +16,7 @@
           class="ml-4"
           prepend-icon="expand"
           variant="text"
-          @click="fold = !fold"
+          @click="toggleFold"
         >
           {{ fold ? '펼처보기' : '좁게보기' }}
         </v-btn>
@@ -27,18 +27,25 @@
       </v-col>
     </v-row>
 
-    <div v-if="mode === 'editor'" class="editor-wrapper" :class="fold ? 'fold' : ''">
+    <div
+      v-if="mode === 'editor'"
+      id="editor"
+      class="editor-wrapper"
+      :class="fold ? 'fold' : ''"
+      style="scroll-margin-top: 64px;"
+    >
       <quill-editor
-        v-model:value="contentHtml"
+        v-model:value="content"
         :options="editorOption"
         id="product-content-html"
         :disabled="disabled"
+        @ready="onEditorReady"
       />
     </div>
 
     <div v-else class="editor-wrapper" :class="fold ? 'fold' : ''">
       <div contenteditable="true" class="html-textarea" @blur="updateHTML">
-        <pre>{{ contentHtml }}</pre>
+        <pre>{{ content }}</pre>
       </div>
     </div>
 
@@ -51,11 +58,11 @@
   @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap');
 
   .editor-wrapper {
-    height: calc(100vh - 150px);
+    height: calc(100vh - 70px);
     transition: height 0.3s ease-in-out;
 
     &.fold {
-      height: 300px;
+      height: 400px;
     }
   }
 

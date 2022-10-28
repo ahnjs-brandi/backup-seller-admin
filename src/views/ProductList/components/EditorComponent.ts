@@ -1,6 +1,8 @@
 import { defineComponent } from 'vue';
 import { quillEditor, Quill } from 'vue3-quill';
 
+import MockData from '@/mock-data/mock-product-content'; // 임시 상세정보 html
+
 // 에디터 폰트 세팅
 const Font = Quill.import('formats/font');
 Font.whitelist = ['NotoSansKR', 'NanumSquare', 'NotoSerifKR'];
@@ -13,13 +15,10 @@ export default defineComponent({
     quillEditor
   },
 
-  props: {
-    content: { type: String, required: true },
-  },
-
   data() {
     return {
-      contentHtml: this.content,
+      content: '',
+      settings: this.$store.getters.productSettings,
       fold: true,
       mode: 'editor',
       editorOption: {
@@ -41,9 +40,45 @@ export default defineComponent({
     }
   },
 
+  watch: {
+    'content'() {
+      this.$store.commit('productContent', this.content);
+    }
+  },
+
+  beforeMount() {
+    if (this.$store.getters.productContent) {
+      // 스토어에 저장된 상품정보가 있으면 불러옴
+      this.content = this.$store.getters.productContent;
+    } else if (this.settings?.duplicateProductId) {
+      // 복제된 상품이 있으면 불러옴
+      this.duplicateContent();
+    }
+    // this.duplicateContent();
+  },
+
   methods: {
     updateHTML(e) {
-      this.contentHtml = e.srcElement.innerText;
+      this.content = e.srcElement.innerText;
     },
+
+    duplicateContent() {
+      this.content = MockData.html;
+    },
+
+    toggleFold() {
+      this.fold = !this.fold;
+
+      if (!this.fold) {
+        setTimeout(() => {
+          const el = document.getElementById('editor');
+          el?.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      }
+    },
+
+    onEditorReady(editor) {
+      editor.blur()
+    }
   }
 });

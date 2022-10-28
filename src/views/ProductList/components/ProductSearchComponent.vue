@@ -1,9 +1,9 @@
 <template>
   <v-dialog v-model="dialog" scrollable max-width="600" height="100%">
     <v-card>
-      <v-card-title>등록된 상품 복사</v-card-title>
+      <v-card-title>상품 검색</v-card-title>
       <v-text-field
-        :value="searchText"
+        v-model="searchText"
         density="compact"
         placeholder="상품명 / 상품번호 검색"
         prepend-inner-icon="search"
@@ -12,7 +12,7 @@
         @input="chageKeyword"
       />
 
-      <v-card-text>
+      <v-card-text :class="$vuetify.display.smAndDown ? 'px-0' : ''">
         <v-list density="comfortable">
           <v-list-item
             v-for="item in filteredItems"
@@ -40,4 +40,4 @@
   </v-dialog>
 </template>
 
-<script lang="ts" src="./DuplicateComponent.ts" />
+<script lang="ts" src="./ProductSearchComponent.ts" />

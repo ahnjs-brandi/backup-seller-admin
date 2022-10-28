@@ -26,6 +26,7 @@
           <v-list-item v-bind="props" prepend-icon="checkroom" title="상품" />
         </template>
         <v-list-item title="상품 리스트" :active="currentView === 'product-list'" to="/product-list" />
+        <v-list-item title="상품 추가" to="/product/create" />
         <v-list-item title="가격/재고 관리" />
       </v-list-group>
 

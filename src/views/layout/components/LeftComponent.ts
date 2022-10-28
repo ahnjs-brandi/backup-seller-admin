@@ -29,7 +29,7 @@ export default defineComponent({
   methods: {
     openGourp() {
       this.open = [];
-      if ( ['product-list'].includes(this.currentView) ) {
+      if ( ['product-list', 'product'].includes(this.currentView) ) {
         this.open = ['Products'];
       }
     },

@@ -1,5 +1,26 @@
 <template>
-  <v-form ref="imageForm" v-model="valid">
+  <v-form ref="form">
+
+    <!-- 파일 업로드 필드 -->
+    <v-file-input
+      v-model="newImages"
+      accept="image/jpeg"
+      label="클릭하여 이미지 추가"
+      multiple
+      single-line
+      prepend-icon=""
+      prepend-inner-icon="attach_file"
+      persistent-label
+      :clearable="false"
+      density="compact"
+      class="mb-6 cursor-pointer"
+      style="max-width: 500px"
+      :rules="imageRules"
+    >
+      <template v-slot:selection>
+        {{ images.length < 6 ? '클릭하여 이미지 추가' : '최대 5장의 이미지만 등록 가능 합니다.' }}
+      </template>
+    </v-file-input>
 
     <p v-if="$vuetify.display.smAndDown" class="text-body-2 text-secondary mb-4">
       스와이프하여 이미지 순서를 변경할 수 있습니다.
@@ -77,7 +98,7 @@
                 size="x-small"
                 @click="moveImage(index - 1, -1)"
               />
-              <span v-else/>
+              <span v-else />
 
               <v-btn
                 v-if="index < imgUrls.length"
@@ -91,28 +112,6 @@
         </v-img>
       </v-col>
     </v-row>
-
-    <!-- 파일 업로드 필드 -->
-    <v-file-input
-      v-model="uploadedImages"
-      accept="image/jpeg"
-      label="클릭하여 이미지 추가"
-      multiple
-      single-line
-      prepend-icon=""
-      prepend-inner-icon="attach_file"
-      persistent-label
-      :clearable="false"
-      density="compact"
-      hide-details="auto"
-      class="mt-6 cursor-pointer"
-      style="max-width: 500px"
-      :rules="imageRules"
-    >
-      <template v-slot:selection>
-        {{ images.length < 6 ? '클릭하여 이미지 추가' : '최대 5장의 이미지만 등록 가능 합니다.' }}
-      </template>
-    </v-file-input>
 
   </v-form>
 </template>

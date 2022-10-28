@@ -18,7 +18,7 @@
       variant="text"
       prepend-icon="add"
       :disabled="isSelected"
-      @click="$router.push('/product-list/product/create')"
+      @click="$router.push('/product/create')"
     >
       상품추가
     </v-btn>

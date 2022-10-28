@@ -3,18 +3,17 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'TagComponent',
 
-  props: {
-    color: { type: String, required: true },
-    style: { type: String, required: true },
-    ect: { type: Array as () => string[], required: true },
-  },
-
   data() {
     return {
-      colorTag: this.color,
-      styleTag: this.style,
-      ectTags: this.ect,
+      settings: this.$store.getters.productSettings,
+      tags: {
+        colorTag: 'na',
+        styleTag: '해당없음',
+        ectTags: [] as string[],
+      },
       newTag: '',
+      firstImage: this.$store.getters.productImages.length > 0 ? this.$store.getters.productImages[0] : '',
+      autoTagLoading: false,
       tagErrorMessages: [] as string[],
 
       colorOptions: [
@@ -48,27 +47,37 @@ export default defineComponent({
 
   computed: {
     colorTitle() {
-      return this.colorOptions.find((item) => item.value === this.colorTag)?.title || '';
+      return this.colorOptions.find((item) => item.value === this.tags.colorTag)?.title || '';
     },
     colorStyle() {
-      return this.colorOptions.find((item) => item.value === this.colorTag)?.style || '';
+      return this.colorOptions.find((item) => item.value === this.tags.colorTag)?.style || '';
     }
   },
 
   watch: {
-    'color'() { this.colorTag = this.color; },
-    'style'() { this.styleTag = this.style; },
-    'ect'() { this.ectTags = this.ect; },
+    'tags': {
+      handler() {
+        this.$store.commit('productTags', this.tags);
+      },
+      deep: true
+    }
   },
 
   mounted() {
-    //
+    if (this.$store.getters.productTags) {
+      // 스토어에 저장된 상품정보가 있으면 불러옴
+      this.tags = this.$store.getters.productTags;
+    } else if (this.settings?.duplicateProductId) {
+      // 복제된 상품이 있으면 불러옴
+      this.duplicateTags();
+    }
   },
 
   methods: {
     removeTag(tag: string) {
-      this.ectTags = this.ectTags.filter(t => t !== tag);
+      this.tags.ectTags = this.tags.ectTags.filter(t => t !== tag);
     },
+
     addTag(event?) {
 
       if (event) {
@@ -78,13 +87,34 @@ export default defineComponent({
 
       if (!this.newTag.length) return;
 
-      if (this.ectTags.find((tag) => tag === this.newTag)) {
+      if (this.tags.ectTags.find((tag) => tag === this.newTag)) {
         this.tagErrorMessages = ['이미 등록된 태그입니다.'];
         return;
       }
 
-      this.ectTags.push(this.newTag);
+      this.tags.ectTags.push(this.newTag);
       this.newTag = '';
+    },
+
+    getAutoTags() {
+      this.autoTagLoading = true;
+
+      setTimeout(() => {
+        this.tags = {
+          colorTag: 'beige',
+          styleTag: '심플베이직',
+          ectTags: ['츄리닝', '긴팔', '브이넥', '오버사이즈', '무지', '니트', '드롭숄더', '캐주얼']
+        }
+        this.autoTagLoading = false;
+      }, 1000);
+    },
+
+    duplicateTags() {
+      this.tags = {
+        colorTag: 'beige',
+        styleTag: '심플베이직',
+        ectTags: ['츄리닝', '긴팔', '브이넥', '오버사이즈', '무지', '니트', '드롭숄더', '캐주얼']
+      }
     }
   }
 });

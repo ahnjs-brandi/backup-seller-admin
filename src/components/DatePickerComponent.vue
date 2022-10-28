@@ -12,6 +12,7 @@
         :hide-details="hideDetails"
         prepend-inner-icon="event"
         :append-inner-icon="label && clearable ? 'cancel' : ''"
+        class="cursor-pointer"
         @click:prepend-inner="menu = true"
         @click:append-inner="this.date = ''"
       />
@@ -22,7 +23,7 @@
       v-model="date"
       color="indigo"
       :model-config="modelConfig"
-      :min="min"
+      :min-date="min"
       :max-date="max"
       :is-range="range"
     />

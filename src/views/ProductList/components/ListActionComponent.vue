@@ -2,13 +2,13 @@
   <div>
     <!-- 선택모드 토글 버튼 -->
     <v-btn
-      :variant="selectMode ? 'tonal' : 'text'"
+      variant="text"
       class="mr-2"
       color="charcoal"
-      :prepend-icon="selectMode ? 'close' : 'checklist'"
+      prepend-icon="checklist"
       @click="toggleSelectMode"
     >
-      {{ selectMode ? '취소' : '선택' }}
+      선택
     </v-btn>
 
     <!-- 상품등록 버튼 -->
@@ -27,8 +27,8 @@
     <v-btn
       variant="text"
       color="charcoal"
-      :prepend-icon="viewOption === 'list' ? 'call_to_action' : 'view_list'"
-      @click="toggleView"
+      :prepend-icon="$store.getters.viewOption === 'table' ? 'call_to_action' : 'view_list'"
+      @click="$store.commit('toggleViewOption')"
     >
       보기변경
     </v-btn>

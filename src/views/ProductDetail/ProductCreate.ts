@@ -80,6 +80,6 @@ export default defineComponent({
       if (this.currentStep === 3) {
         this.nextStep();
       }
-    }
+    },
   }
 });

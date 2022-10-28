@@ -10,7 +10,7 @@ export default defineComponent({
 
   data() {
     return {
-      show: true,
+      included: true,
       sizeCount: 1,
       product: {
         madeIn: '상품 상세 참조',

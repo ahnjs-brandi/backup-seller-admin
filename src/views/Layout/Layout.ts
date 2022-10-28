@@ -1,6 +1,7 @@
 import { defineComponent } from 'vue';
 import TopComponent from './components/TopComponent.vue';
 import LeftComponent from './components/LeftComponent.vue';
+import Snackbar from './components/SnackbarComponent.vue';
 
 export default defineComponent({
   name: 'Layout',
@@ -8,6 +9,7 @@ export default defineComponent({
   components: {
     TopComponent,
     LeftComponent,
+    Snackbar,
   },
 
   data() {

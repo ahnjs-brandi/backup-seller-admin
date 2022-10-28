@@ -1,18 +1,4 @@
 <template>
-  <!--
-  혹시몰라: 모바일 2열 레이아웃
-  <v-row
-    :dense="$vuetify.display.smAndDown"
-    class="mx-n3"
-  >
-    <v-col
-      v-for="item in products"
-      :key="item.id"
-      cols="6"
-      sm="6"
-      md="3"
-      xl="2"
-    > -->
   <v-row class="mx-n3">
     <v-col cols="12" v-if="selectMode">
       <v-checkbox-btn
@@ -55,7 +41,6 @@
               v-if="selectMode"
               v-model="selected"
               :value="item.id"
-              color="secondary"
               class="text-white ma-n2"
               style="text-shadow: 1px 1px 1px rgba(0, 0, 0, .1)"
               @click="e => e.stopPropagation()"
@@ -64,10 +49,10 @@
         </v-img>
 
         <v-card-text>
-          <a @click="$router.push(`/product-list/${item.id}`)" class="text-link">
+          <a @click="$router.push(`/product-list/${item.id}?tab=settings`)" class="text-link">
             {{ item.code }}
           </a>
-          <div class="card-title cursor-pointer" @click="$router.push(`/product-list/${item.id}`)">
+          <div class="card-title cursor-pointer" @click="$router.push(`/product-list/${item.id}?tab=settings`)">
             {{ item.name }}
           </div>
           <div class="card-price">
@@ -90,7 +75,7 @@
               half-increments
               readonly
             />
-            <a class="text-link ml-2">
+            <a class="text-link ml-2" @click="$store.commit('openDemoDialog')">
               {{ item.review }}개
             </a>
 

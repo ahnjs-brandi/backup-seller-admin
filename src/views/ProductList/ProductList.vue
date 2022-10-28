@@ -17,12 +17,7 @@
       :class="$vuetify.display.mdAndUp ? 'justify-end' : 'justify-center'"
     >
       <!-- 리스트 액션 컴포넌트 -->
-      <ListActionComponent
-        v-model:selectMode="selectMode"
-        :isSelected="isSelected"
-        :viewOption="viewOption"
-        @toggleView="toggleView"
-      />
+      <ListActionComponent v-model:selectMode="selectMode" :isSelected="isSelected" />
     </v-col>
   </v-row>
 
@@ -65,7 +60,7 @@
 
   <!-- 리스트 뷰 컴포넌트 -->
   <ProductTableList
-    v-if="viewOption === 'list' && products.length"
+    v-if="$store.getters.viewOption === 'table' && products.length"
     v-model="selectedItems"
     :products="products"
     :select-mode="selectMode"
@@ -73,7 +68,7 @@
 
   <!-- 카드 뷰 컴포넌트 -->
   <ProductCardList
-    v-if="viewOption === 'card' && products.length"
+    v-if="$store.getters.viewOption === 'card' && products.length"
     id="card-list"
     v-model="selectedItems"
     :products="products"
@@ -82,7 +77,7 @@
 
   <!-- 페이징 -->
   <v-pagination
-    v-if="!($vuetify.display.smAndDown && viewOption === 'card')"
+    v-if="!($vuetify.display.smAndDown && $store.getters.viewOption === 'card')"
     v-model="params.page"
     disabled
     :length="10"

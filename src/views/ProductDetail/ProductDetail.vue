@@ -22,7 +22,12 @@
 
       <!-- 상세정보 탭 -->
       <EditorComponent v-if="tab === 'editor'" ref="editor" :id="Number(id)" />
-      <SizeComponent v-if="tab === 'editor'" class="mt-8" :id="Number(id)" />
+      <SizeComponent
+        v-if="tab === 'editor'"
+        class="mt-4"
+        :style="$vuetify.display.smAndDown ? 'margin-top: 60px !important' : ''"
+        :id="Number(id)"
+      />
 
       <!-- 판매정보 탭 -->
       <PriceComponent v-if="tab === 'price'" ref="price" :id="Number(id)" />

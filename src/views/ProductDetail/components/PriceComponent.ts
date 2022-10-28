@@ -16,8 +16,12 @@ export default defineComponent({
         price: 0,
         minQuantity: 1,
         maxQuantity: 20,
+        isOptions: false,
+        setStock: false,
+        stock: 10,
       },
-      test: 3,
+
+      // Validations
       rules: {
         price: [
           v => v >= 0 || '0원 이상만 가능합니다.',
@@ -30,9 +34,13 @@ export default defineComponent({
           v => v <= this.sellOptions['maxQuantity'] || '최소 수량보다 작거나 같아야 합니다.',
         ],
         max: [
-          // v => v > 0 || '1개 이상만 가능합니다.',
+          v => v > 0 || '1개 이상만 가능합니다.',
           v => v <= 20 || '20개 이하만 가능합니다.',
           v => v >= this.sellOptions['minQuantity'] || '최소 수량보다 크거나 같아야 합니다.',
+        ],
+        stock: [
+          v => v > 0 || '1개 이상만 가능합니다.',
+          v => v < 100000000 || '1억개 이하로 입력해주세요',
         ],
       },
     };

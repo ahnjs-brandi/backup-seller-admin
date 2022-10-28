@@ -1,5 +1,16 @@
 <template>
   <v-form ref="form">
+    <div class="text-right mt-n12">
+      <v-btn
+        variant="text"
+        prepend-icon="refresh"
+        color="charcoal"
+        class="mb-4"
+        @click="reset"
+      >
+        상품추가 초기화
+      </v-btn>
+    </div>
 
     <v-row>
       <v-col

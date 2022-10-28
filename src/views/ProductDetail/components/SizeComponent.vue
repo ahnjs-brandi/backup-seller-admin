@@ -1,18 +1,10 @@
 <template>
   <v-row class="limit-width">
     <v-col cols="12">
-      <v-btn-toggle
-        v-model="show"
-        density="compact"
-        color="primary"
-        mandatory
-      >
-        <v-btn :value="true">실측사이즈 상세정보에 미포함</v-btn>
-        <v-btn :value="false">상세정보에 포함</v-btn>
-      </v-btn-toggle>
+      <v-switch v-model="included" color="primary" label="실측사이즈 상세정보에 포함" hide-details class="d-flex" />
     </v-col>
 
-    <template v-if="show">
+    <template v-if="!included">
       <v-col cols="12" sm="6" md="3">
         <v-img src="@/assets/mock-size.jpeg" width="100%" />
       </v-col>

@@ -28,14 +28,8 @@ const router = createRouter({
 });
 
 router.beforeEach(function (to, from, next) {
-  // 상품추가 중 이탈할 때
-  // if (from.path === '/product/create') {
-  //   if (store.getters.productSettings) {
-  //     if (!confirm('상품추가가 완료되지 않았습니다. 정말 나가시겠습니까?')) {
-  //       return;
-  //     }
-  //   }
-  // }
+  store.commit('resetSnackbar');
+  store.commit('endLoading');
 
   const accessToken = localStorage.getItem('accessToken');
 

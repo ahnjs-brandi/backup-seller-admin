@@ -61,6 +61,44 @@
         />
       </v-col>
     </v-row>
+
+    <!-- 옵션 세팅 -->
+    <v-switch
+      v-model="sellOptions.isOption"
+      :label="sellOptions.isOption ? '옵션 사용' : '옵션 미사용'"
+      color="primary"
+      class="mt-8"
+      hide-details
+    />
+
+    <v-row dense v-if="!sellOptions.isOption" class="d-flex align-center" style="min-height: 92px;">
+      <v-col cols="6" sm="3" md="2">
+        <v-switch
+          v-model="sellOptions.setStock"
+          :label="sellOptions.setStock ? '재고 관리' : '재고관리 안함'"
+          color="primary"
+          hide-details
+        />
+      </v-col>
+      <v-col cols="6" sm="3" md="2" v-if="sellOptions.setStock">
+        <div class="label">재고</div>
+        <v-text-field
+          v-model.number="sellOptions.stock"
+          type="number"
+          suffix="개"
+          density="compact"
+          min="1"
+          max="20"
+          :rules="rules.stock"
+        />
+      </v-col>
+    </v-row>
+
+    <div>
+      <v-btn color="secondary" prepend-icon="palette" class="mr-1">색상 기본옵션 추가</v-btn>
+      <v-btn color="secondary" prepend-icon="straighten" class="mr-1">사이즈 기본옵션 추가</v-btn>
+      <v-btn color="secondary" prepend-icon="crop_free" class="mr-1">자율옵션 추가</v-btn>
+    </div>
   </div>
 </template>
 

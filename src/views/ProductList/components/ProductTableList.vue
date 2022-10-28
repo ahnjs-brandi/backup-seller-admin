@@ -32,7 +32,7 @@
           />
         </td>
         <td>
-          <a @click="$router.push(`/product-list/${item.id}`)" class="text-link">
+          <a @click="$router.push(`/product-list/${item.id}?tab=settings`)" class="text-link">
             {{ item.code }}
           </a>
         </td>

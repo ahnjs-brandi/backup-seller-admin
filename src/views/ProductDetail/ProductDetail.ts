@@ -31,6 +31,9 @@ export default defineComponent({
   watch: {
     'tab'() {
       this.$router.push({ path: this.$route.path, query: { tab: this.tab }, });
+    },
+    '$route.query'() {
+      this.tab = this.$route.query.tab;
     }
   },
 

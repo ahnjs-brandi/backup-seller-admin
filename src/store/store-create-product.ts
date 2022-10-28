@@ -25,8 +25,21 @@ const mutations = {
   productContent: (state, content) => state.productContent = content,
 };
 
+const actions = {
+  resetCreateProduct({ commit }) {
+    console.log('resetCreateProduct');
+    commit('createStepAccess', 1);
+    commit('createCurrentStep', 1);
+    commit('productSettings', null);
+    commit('productImages', []);
+    commit('productTags', null);
+    commit('productContent', null);
+  }
+}
+
 export default {
   state,
   getters,
   mutations,
+  actions
 };

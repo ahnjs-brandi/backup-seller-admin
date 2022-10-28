@@ -1,10 +1,14 @@
 <template>
   <!-- 좌측 네비게이션 -->
-  <left-component />
+  <LeftComponent />
 
   <!-- 탑 툴바 -->
-  <top-component />
+  <TopComponent />
 
+  <!-- 스낵바 -->
+  <Snackbar />
+
+  <!-- 메인 컨텐츠 -->
   <v-main>
     <v-card
       elevation="0"

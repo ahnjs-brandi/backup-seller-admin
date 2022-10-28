@@ -18,7 +18,6 @@ export default defineComponent({
 
   data() {
     return {
-      viewOption: 'card',
       selectMode: false,
       showFilters: false,
       showNoDataMessage: false,
@@ -112,11 +111,8 @@ export default defineComponent({
       return product.price !== product.finalPrice;
     },
 
-    toggleView() {
-      this.viewOption = this.viewOption === 'list' ? 'card' : 'list';
-    },
-
     editSelected(key: string, value: boolean) {
+
       this.selectedItems.forEach(id => {
         const product = this.products.find(product => product.id === id);
         if (product) {
@@ -125,6 +121,8 @@ export default defineComponent({
       });
 
       this.fetchProducts();
+      this.$store.commit('showSnackbar', { text: '상품 정보가 수정되었습니다.' });
+      this.selectMode = false;
     },
   }
 });

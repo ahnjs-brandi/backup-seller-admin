@@ -101,9 +101,18 @@ export default defineComponent({
         duplicateProductId: duplicated.id,
         codiProducts: []
       };
+
+      this.$store.commit('showSnackbar', { text: '복제 되었습니다.' });
     },
 
     addCodiProduct(id: number) {
+      const exist = this.settings.codiProducts.find(item => item.id === id);
+
+      if (exist) {
+        this.$store.commit('showSnackbar', { text: '이미 추가된 상품입니다.', type: 'error' });
+        return;
+      }
+
       const codiProduct = MockData.products.find(item => item.id === id);
 
       this.settings.codiProducts.push(codiProduct);
@@ -111,6 +120,29 @@ export default defineComponent({
 
     removeCodiProduct(id: number) {
       this.settings.codiProducts = this.settings.codiProducts.filter(item => item.id !== id);
+    },
+
+    reset() {
+      this.$store.dispatch('resetCreateProduct');
+
+      this.settings = {
+        code: null,
+        name: '',
+        description: '',
+        category1: null,
+        category2: null,
+        tax: '과세',
+        delivery: '국내배송',
+        codi: false,
+        seasonType: null,
+        custom: false,
+        duplicateProductId: 0,
+        codiProducts: []
+      };
+
+      this.$refs.form.reset();
+
+      this.$store.commit('showSnackbar', { text: '초기화 되었습니다.' });
     }
   }
 });

@@ -3,6 +3,11 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'ImageUploadComponent',
 
+  props: {
+    create: { type: Boolean, default: false },
+    id: { type: Number, defualt: 0 },
+  },
+
   data() {
     return {
       images: [],
@@ -26,19 +31,28 @@ export default defineComponent({
     images: {
       handler() {
         this.setImgUrl();
-        this.$store.commit('productImages', this.images);
+
+        if (!this.create) {
+          this.$store.commit('productImages', this.images);
+        }
       },
       deep: true
     },
   },
 
   mounted() {
-    if (this.$store.getters.productImages.length) {
-      // 스토어에 저장된 상품정보가 있으면 불러옴
-      this.images = this.$store.getters.productImages;
-    } else if (this.settings.duplicateProductId) {
-      // 복제된 상품이 있으면 불러옴
-      this.duplicateImages(this.settings.duplicateProductId);
+    if (this.create) {
+      //생성 페이지 초기화
+      if (this.$store.getters.productImages.length) {
+        // 스토어에 저장된 상품정보가 있으면 불러옴
+        this.images = this.$store.getters.productImages;
+      } else if (this.settings.duplicateProductId) {
+        // 복제된 상품이 있으면 불러옴
+        this.duplicateImages(this.settings.duplicateProductId);
+      }
+    } else {
+      // 수정 페이지 초기화
+      this.duplicateImages(this.id);
     }
   },
 

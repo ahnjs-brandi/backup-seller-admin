@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="limit-width">
     <v-row class="mb-1 d-flex align-end">
       <v-col cols="12" sm="4">
         <v-btn-toggle
@@ -8,7 +8,7 @@
           color="primary"
           mandatory
         >
-          <v-btn value="editor" ref="test">에디터</v-btn>
+          <v-btn value="editor">에디터</v-btn>
           <v-btn value="html">HTML편집</v-btn>
         </v-btn-toggle>
 

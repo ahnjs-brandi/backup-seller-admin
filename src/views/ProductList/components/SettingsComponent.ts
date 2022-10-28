@@ -11,6 +11,7 @@ export default defineComponent({
 
   props: {
     create: { type: Boolean, default: false },
+    id: { type: Number, defualt: 0 },
   },
 
   data() {
@@ -52,19 +53,27 @@ export default defineComponent({
   watch: {
     settings: {
       handler() {
-        this.$store.commit('productSettings', this.settings);
+        if (!this.create) {
+          this.$store.commit('productSettings', this.settings);
+        }
       },
       deep: true
     }
   },
 
   mounted() {
-    if (this.$store.getters.productSettings) {
-      // 스토어에 저장된 상품정보가 있으면 불러옴
-      this.settings = this.$store.getters.productSettings;
-    } else if (this.settings.duplicateProductId) {
-      // 복제된 상품이 있으면 불러옴
-      this.duplicateSettings();
+    if (this.create) {
+      //생성 페이지 초기화
+      if (this.$store.getters.productSettings) {
+        // 스토어에 저장된 상품정보가 있으면 불러옴
+        this.settings = this.$store.getters.productSettings;
+      } else if (this.settings.duplicateProductId) {
+        // 복제된 상품이 있으면 불러옴
+        this.duplicateSettings();
+      }
+    } else {
+      // 수정 페이지 초기화
+      this.duplicateSettings(this.id);
     }
   },
 
@@ -79,7 +88,7 @@ export default defineComponent({
       if (!duplicated) return;
 
       this.settings = {
-        code: null,
+        code: duplicated.code,
         name: duplicated.name,
         description: '',
         category1: duplicated.category1,

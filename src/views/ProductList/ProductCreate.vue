@@ -36,6 +36,7 @@
 
     <!-- Step 3: 상세정보 -->
     <EditorComponent v-if="currentStep === 3" class="mt-8" create />
+    <SizeComponent v-if="currentStep === 3" class="mt-8" create />
 
     <!-- 하단 액션 -->
     <div class="text-right" style="margin: 80px 0 20px 0">

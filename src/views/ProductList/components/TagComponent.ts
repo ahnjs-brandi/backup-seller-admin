@@ -3,6 +3,11 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'TagComponent',
 
+  props: {
+    create: { type: Boolean, default: false },
+    id: { type: Number, defualt: 0 },
+  },
+
   data() {
     return {
       settings: this.$store.getters.productSettings,
@@ -57,18 +62,25 @@ export default defineComponent({
   watch: {
     'tags': {
       handler() {
-        this.$store.commit('productTags', this.tags);
+        if (!this.create) {
+          this.$store.commit('productTags', this.tags);
+        }
       },
       deep: true
     }
   },
 
   mounted() {
-    if (this.$store.getters.productTags) {
-      // 스토어에 저장된 상품정보가 있으면 불러옴
-      this.tags = this.$store.getters.productTags;
-    } else if (this.settings?.duplicateProductId) {
-      // 복제된 상품이 있으면 불러옴
+    if (this.create) {
+      // 상품 추가 초기화
+      if (this.$store.getters.productTags) {
+        // 스토어에 저장된 상품정보가 있으면 불러옴
+        this.tags = this.$store.getters.productTags;
+      } else if (this.settings?.duplicateProductId) {
+        // 복제된 상품이 있으면 불러옴
+        this.duplicateTags();
+      }
+    } else {
       this.duplicateTags();
     }
   },

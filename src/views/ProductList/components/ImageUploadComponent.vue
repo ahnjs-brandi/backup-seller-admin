@@ -72,9 +72,11 @@
               <v-btn
                 v-if="imgUrls[index - 1]"
                 color="primary-lighten-1"
-                icon="cancel"
+                icon="close"
                 size="x-small"
                 class="action-btns"
+                width="20"
+                height="20"
                 @click="removeImage(index - 1)"
               />
             </div>
@@ -88,7 +90,7 @@
 
             <!-- 순서 변경 버튼 -->
             <div
-              v-if="imgUrls[index - 1] && $vuetify.display.smAndUp"
+              v-if="imgUrls[index - 1]"
               class="d-flex action-btns justify-space-between"
             >
               <v-btn
@@ -96,6 +98,8 @@
                 color="primary-lighten-1"
                 icon="arrow_back"
                 size="x-small"
+                width="20"
+                height="20"
                 @click="moveImage(index - 1, -1)"
               />
               <span v-else />
@@ -105,6 +109,8 @@
                 color="primary-lighten-1"
                 icon="arrow_forward"
                 size="x-small"
+                width="20"
+                height="20"
                 @click="moveImage(index - 1, 1)"
               />
             </div>

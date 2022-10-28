@@ -15,6 +15,11 @@ export default defineComponent({
     quillEditor
   },
 
+  props: {
+    create: { type: Boolean, default: false },
+    id: { type: Number, defualt: 0 },
+  },
+
   data() {
     return {
       content: '',
@@ -42,19 +47,26 @@ export default defineComponent({
 
   watch: {
     'content'() {
-      this.$store.commit('productContent', this.content);
+      if (this.create) {
+        this.$store.commit('productContent', this.content);
+      }
     }
   },
 
   beforeMount() {
-    if (this.$store.getters.productContent) {
-      // 스토어에 저장된 상품정보가 있으면 불러옴
-      this.content = this.$store.getters.productContent;
-    } else if (this.settings?.duplicateProductId) {
-      // 복제된 상품이 있으면 불러옴
+    if (this.create) {
+      // 상품 생성 페이지
+      if (this.$store.getters.productContent) {
+        // 스토어에 저장된 상품정보가 있으면 불러옴
+        this.content = this.$store.getters.productContent;
+      } else if (this.settings?.duplicateProductId) {
+        // 복제된 상품이 있으면 불러옴
+        this.duplicateContent();
+      }
+    } else {
+      // 상품 수정 페이지
       this.duplicateContent();
     }
-    // this.duplicateContent();
   },
 
   methods: {

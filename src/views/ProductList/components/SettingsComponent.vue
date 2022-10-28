@@ -2,7 +2,13 @@
   <v-form ref="form">
 
     <v-row>
-      <v-col cols="12" md="6" :order="$vuetify.display.mdAndUp ? 2 : 1" :class="$vuetify.display.mdAndUp ? 'text-right' : ''">
+      <v-col
+        v-if="create"
+        cols="12"
+        md="6"
+        :order="$vuetify.display.mdAndUp ? 2 : 1"
+        :class="$vuetify.display.mdAndUp ? 'text-right' : ''"
+      >
         <v-btn flat color="grey-lighten-4 text-charcoal" @click="dialogDuplicate = true">
           <v-icon start>sim_card_download</v-icon>
           등록된 상품 복사
@@ -17,10 +23,9 @@
 
       <v-col cols="12" md="6" :order="$vuetify.display.mdAndUp ? 1 : 2">
         <v-row dense>
-          <v-col cols="6" md="3" v-if="!create">
+          <v-col cols="12" md="6" v-if="!create">
             <div class="label">상품번호</div>
             <v-text-field
-              autofocus
               v-model="settings.code"
               density="compact"
               readonly

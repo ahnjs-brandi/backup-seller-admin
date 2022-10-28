@@ -3,7 +3,8 @@ import FilterComponent from './components/FilterComponent.vue';
 import ListActionComponent from './components/ListActionComponent.vue';
 import ProductCardList from './components/ProductCardList.vue';
 import ProductTableList from './components/ProductTableList.vue';
-import mockData from './mock-data'; // 임시 데이터
+
+import MockData from '@/mock-data/mock-product-list'; // 임시 데이터
 
 export default defineComponent({
   name: 'ProductListView',
@@ -25,7 +26,6 @@ export default defineComponent({
       params: {} as Product.Params,
       selectedItems: [],
       products: [] as Product.List[],
-      test: true
     }
   },
 
@@ -62,7 +62,7 @@ export default defineComponent({
 
       // TODO: API 연동
       new Promise(resolve => setTimeout(resolve, 300)).then(() => {
-        this.products = mockData.products;
+        this.products = MockData.products;
         this.products = this.products.filter(product => {
           return (this.params.exhibition === product.exhibition || this.params.exhibition === null)
           && (this.params.sell === product.sell || this.params.sell === null)

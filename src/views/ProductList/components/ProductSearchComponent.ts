@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue';
-import mockData from '../mock-data'; // 임시 데이터
+import MockData from '@/mock-data/mock-product-list'; // 임시 데이터
 
 export default defineComponent({
   name: 'ProductSearchComponent',
@@ -32,7 +32,7 @@ export default defineComponent({
   },
 
   mounted() {
-    this.products = mockData.products;
+    this.products = MockData.products;
     this.filteredItems = this.products;
   },
 

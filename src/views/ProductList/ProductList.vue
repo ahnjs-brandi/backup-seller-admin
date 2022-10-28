@@ -26,8 +26,6 @@
     </v-col>
   </v-row>
 
-  {{$store.getters.demoDialog}}
-
   <v-row align="center" class="mb-2" dense>
     <v-col cols="12" md="4" style="min-height: 32px">
       <div v-if="!selectedItems.length" class="font-weight-medium">
@@ -107,15 +105,12 @@
 </template>
 
 
-import FilterComponent from "./components/FilterComponent.vue";<script lang="ts" src="./ProductList.ts" />
+<script lang="ts" src="./ProductList.ts" />
 
 <style lang="scss" scoped>
-$primary: #384787;
-
 // 모바일 선택 모드일 때 상단에 고정되는 액션 버튼
 .action-fixed{
   position: fixed;
-  // bottom: 28px;
   top: 78px;
   left: calc(50% - 100px);
   width: 200px;

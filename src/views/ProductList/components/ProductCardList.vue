@@ -64,10 +64,10 @@
         </v-img>
 
         <v-card-text>
-          <a @click="$router.push(`/product-list/product/${item.id}`)" class="text-link">
+          <a @click="$router.push(`/product-list/${item.id}`)" class="text-link">
             {{ item.code }}
           </a>
-          <div class="card-title cursor-pointer" @click="$router.push(`/product-list/product/${item.id}`)">
+          <div class="card-title cursor-pointer" @click="$router.push(`/product-list/${item.id}`)">
             {{ item.name }}
           </div>
           <div class="card-price">

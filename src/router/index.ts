@@ -12,8 +12,8 @@ const routes: Array<RouteRecordRaw> = [
       { path: '', redirect: '/product-list' },
       { path: '/dashboard', meta: { title: '대쉬보드' }, component: () => import(/* webpackChunkName: "dashboard" */ '@/views/Dashboard/Dashboard.vue') },
       { path: '/product-list', meta: { title: '상품 리스트' }, component: () => import(/* webpackChunkName: "product-list" */ '@/views/ProductList/ProductList.vue') },
-      { path: '/product-list/:id', meta: { title: '상품 상세보기' }, props: true, component: () => import(/* webpackChunkName: "product-detail" */ '@/views/ProductList/ProductDetail.vue') },
-      { path: '/product/create', meta: { title: '상품추가' }, component: () => import(/* webpackChunkName: "product-create" */ '@/views/ProductList/ProductCreate.vue') },
+      { path: '/product-list/:id', meta: { title: '상품 상세보기' }, props: true, component: () => import(/* webpackChunkName: "product-detail" */ '@/views/ProductDetail/ProductDetail.vue') },
+      { path: '/product/create', meta: { title: '상품추가' }, component: () => import(/* webpackChunkName: "product-create" */ '@/views/ProductDetail/ProductCreate.vue') },
     ]
   },
   { path: '/:pathMatch(.*)*', component: () => import(/* webpackChunkName: "not-found" */ '@/views/NotFound.vue') },

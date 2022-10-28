@@ -102,7 +102,9 @@ export default defineComponent({
         codiProducts: []
       };
 
-      this.$store.commit('showSnackbar', { text: '복제 되었습니다.' });
+      if (this.create) {
+        this.$store.commit('showSnackbar', { text: '복제 되었습니다.' });
+      }
     },
 
     addCodiProduct(id: number) {
@@ -123,8 +125,6 @@ export default defineComponent({
     },
 
     reset() {
-      this.$store.dispatch('resetCreateProduct');
-
       this.settings = {
         code: null,
         name: '',
@@ -141,6 +141,10 @@ export default defineComponent({
       };
 
       this.$refs.form.reset();
+
+      setTimeout(() => {
+        this.$store.dispatch('resetCreateProduct');
+      }, 100);
 
       this.$store.commit('showSnackbar', { text: '초기화 되었습니다.' });
     }

@@ -26,6 +26,7 @@
       :min-date="min"
       :max-date="max"
       :is-range="range"
+      :first-day-of-week="2"
     />
   </v-menu>
 </template>

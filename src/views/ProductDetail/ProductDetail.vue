@@ -42,7 +42,7 @@
         class="mr-2"
         size="large"
         flat
-        @click="$router.go(-1)"
+        @click="$router.push('/product-list')"
       >
         취소
       </v-btn>
@@ -51,7 +51,7 @@
         flat
         :class="$vuetify.display.mdAndUp ? 'w-25' : 'w-100'"
         size="large"
-        @click="$router.go(-1)"
+        @click="submit"
       >
         저장
       </v-btn>

@@ -28,7 +28,6 @@ const router = createRouter({
 });
 
 router.beforeEach(function (to, from, next) {
-  store.commit('resetSnackbar');
   store.commit('endLoading');
 
   const accessToken = localStorage.getItem('accessToken');

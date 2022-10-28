@@ -27,7 +27,6 @@ const mutations = {
 
 const actions = {
   resetCreateProduct({ commit }) {
-    console.log('resetCreateProduct');
     commit('createStepAccess', 1);
     commit('createCurrentStep', 1);
     commit('productSettings', null);

@@ -28,8 +28,9 @@ export default createStore({
     setPageTitle(state, title) { state.pageTitle = title; },
     startLoading(state) { state.loading = true; },
     endLoading(state) { state.loading = false; },
-    showSnackbar(state, { text, type }) {
+    showSnackbar(state, { text, type } = { text: '', type: '' }) {
       state.snackbar = true;
+
       state.snackbarText = text;
       state.snackbarType = type;
     },

@@ -67,7 +67,7 @@
       v-model="sellOptions.isOption"
       :label="sellOptions.isOption ? '옵션 사용' : '옵션 미사용'"
       color="primary"
-      class="mt-8"
+      class="mt-8 d-flex"
       hide-details
     />
 
@@ -78,6 +78,7 @@
           :label="sellOptions.setStock ? '재고 관리' : '재고관리 안함'"
           color="primary"
           hide-details
+          class="d-flex"
         />
       </v-col>
       <v-col cols="6" sm="3" md="2" v-if="sellOptions.setStock">

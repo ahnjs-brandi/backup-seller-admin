@@ -1,29 +1,28 @@
 <template>
   <v-form ref="form">
-    <div class="text-right mt-n12">
-      <v-btn
-        variant="text"
-        prepend-icon="refresh"
-        color="charcoal"
-        class="mb-4"
-        @click="reset"
-      >
-        상품추가 초기화
-      </v-btn>
-    </div>
-
     <v-row>
       <v-col
         v-if="create"
         cols="12"
         md="6"
         :order="$vuetify.display.mdAndUp ? 2 : 1"
-        :class="$vuetify.display.mdAndUp ? 'text-right' : ''"
       >
-        <v-btn flat color="grey-lighten-4 text-charcoal" @click="dialogDuplicate = true">
-          <v-icon start>sim_card_download</v-icon>
-          등록된 상품 복사
-        </v-btn>
+        <div class="d-flex align-center" :class="$vuetify.display.mdAndUp ? 'justify-end' : ''">
+          <v-btn
+            v-if="$store.getters.productSettings"
+            variant="text"
+            prepend-icon="refresh"
+            color="charcoal"
+            @click="reset"
+          >
+            상품추가 초기화
+          </v-btn>
+
+          <v-btn flat color="grey-lighten-4 text-charcoal" @click="dialogDuplicate = true">
+            <v-icon start>sim_card_download</v-icon>
+            등록된 상품 복사
+          </v-btn>
+        </div>
 
         <!-- 상품검색: 등록된 상품 복사 -->
         <ProductSearchComponent

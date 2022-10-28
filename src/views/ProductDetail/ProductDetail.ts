@@ -43,7 +43,8 @@ export default defineComponent({
 
   methods: {
     submit() {
-      //
+      this.$store.commit('showSnackbar');
+      this.$router.push('/product-list');
     },
   }
 });

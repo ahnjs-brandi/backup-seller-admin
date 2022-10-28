@@ -10,7 +10,7 @@
       :loading="autoTagLoading"
       @click="getAutoTags"
     >
-      인공지능 자동추출
+      인공지능 검색어 추출
     </v-btn>
 
     <v-row dense>

@@ -12,7 +12,6 @@ export default defineComponent({
     return {
       dialog: this.modelValue,
       searchText: '',
-      timeout: 0,
       products: [] as Product.List[],
       filteredItems: [] as Product.List[],
     }

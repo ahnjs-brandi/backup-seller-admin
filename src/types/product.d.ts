@@ -48,4 +48,12 @@ declare namespace Product {
     },
     content: string;
   }
+  interface Option {
+    name: string;
+    color?: string;
+    size?: string;
+    setStock: boolean;
+    stock: number;
+    customCode: string | null;
+  }
 }

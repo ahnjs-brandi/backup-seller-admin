@@ -5,6 +5,8 @@ const state = {
   productImages: [],
   productTags: null,
   productContent: null,
+  saleSettings: null,
+  optionSettings: null,
 };
 
 const getters = {
@@ -14,6 +16,8 @@ const getters = {
   productImages: state => state.productImages,
   productTags: state => state.productTags,
   productContent: state => state.productContent,
+  saleSettings: state => state.saleSettings,
+  optionSettings: state => state.optionSettings,
 };
 
 const mutations = {
@@ -23,6 +27,8 @@ const mutations = {
   productImages: (state, images) => state.productImages = images,
   productTags: (state, tags) => state.productTags = tags,
   productContent: (state, content) => state.productContent = content,
+  saleSettings: (state, settings) => state.saleSettings = settings,
+  optionSettings: (state, settings) => state.optionSettings = settings,
 };
 
 const actions = {
@@ -33,6 +39,8 @@ const actions = {
     commit('productImages', []);
     commit('productTags', null);
     commit('productContent', null);
+    commit('saleSettings', null);
+    commit('optionSettings', null);
   }
 }
 

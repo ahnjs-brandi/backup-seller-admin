@@ -10,6 +10,7 @@ import { loadFonts } from './plugins/webfontloader'
 
 // 공용 컴포넌트
 import DatePicker from './components/DatePickerComponent.vue';
+import Confirmation from './components/ConfirmationComponent.vue';
 
 loadFonts()
 
@@ -23,5 +24,6 @@ app.config.globalProperties.$moment = moment;
 app.config.globalProperties.$filters = filters;
 
 app.component('DatePicker', DatePicker);
+app.component('Confirmation', Confirmation);
 
 app.mount('#app')

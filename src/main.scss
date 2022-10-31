@@ -83,29 +83,13 @@ $warning: #FFC107;
 
 // 텍스트 필드 스타일 오버라이딩
 .v-field--variant-filled {
-  &.v-field {
-    // border: 1px solid #e1e1e1;
-    // border: 1px solid #384787;
-    // border-radius: 4px;
-    // color: #7C7E82 !important;
-  }
   .v-field__overlay {
     background-color: #F5F5F5 !important;
   }
-  // .v-progress-linear__background {
-  //   background-color: red !important;
-  // }
-  // &.v-field--focused {
-  //   &.v-field {
-  //     box-shadow: 0 0 4px #384787 !important;
-  //     border: inset 6px solid red !important;
-  //   }
-    // box-shadow: 0 0 4px #384787 !important;
-    // border: inset 6px solid #384787;
-  // }
 }
 
 .v-field--variant-filled.v-field {
+  background-color: #fff;
   border: 1px solid #e1e1e1;
   border-radius: 4px;
   .v-field__outline {

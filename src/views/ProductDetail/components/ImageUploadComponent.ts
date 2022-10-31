@@ -46,7 +46,8 @@ export default defineComponent({
       if (this.$store.getters.productImages.length) {
         // 스토어에 저장된 상품정보가 있으면 불러옴
         this.images = this.$store.getters.productImages;
-      } else if (this.settings.duplicateProductId) {
+      }
+      else if (this.settings.duplicateProductId) {
         // 복제된 상품이 있으면 불러옴
         this.duplicateImages(this.settings.duplicateProductId);
       }

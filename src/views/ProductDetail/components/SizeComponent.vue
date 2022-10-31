@@ -39,7 +39,7 @@
         </v-row>
 
         <!-- 추가/제거 버튼 -->
-        <v-btn color="primary" variant="text" icon="add_circle" size="small" @click="sizeCount++" />
+        <v-btn color="primary" variant="text" icon="add_circle" size="small" @click="addSize" />
         <v-btn :disabled="sizeCount <= 1" color="primary" variant="text" icon="remove_circle" size="small" @click="sizeCount--" />
 
         <div class="mt-4" style="overflow-x: auto">

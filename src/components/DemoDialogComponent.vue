@@ -2,7 +2,6 @@
   <v-dialog v-model="$store.state.demoDialog" max-width="390">
     <v-card>
       <v-card-text class="text-center py-16">
-        <!-- <div style="font-size: 100px">🧞‍♂️</div> -->
         <div style="font-size: 100px">🦦</div>
         <div class="">아직 안만듦</div>
       </v-card-text>
@@ -18,7 +17,7 @@ export default defineComponent({
 
   data() {
     return {
-      open: this.modelValue
+      //
     }
   },
 })

@@ -21,7 +21,6 @@ export default defineComponent({
       settings: {
         code: null,
         name: '',
-        description: '',
         category1: null,
         category2: null,
         tax: '과세',
@@ -36,7 +35,6 @@ export default defineComponent({
       // validations
       rules: {
         name: [v => v.length <= 100 || '100자 이내로 입력해주세요',],
-        description: [v => v.length <= 100 || '100자 이내로 입력해주세요',],
         required: [v => !!v || '필수입력'],
         noSymbols: [
           v => !v.includes(`"`) && !v.includes(`'`) || '따옴표 사용 불가',

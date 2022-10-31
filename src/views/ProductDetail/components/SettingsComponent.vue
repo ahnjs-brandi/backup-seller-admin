@@ -54,18 +54,6 @@
             />
           </v-col>
 
-          <v-col cols="12">
-            <div class="label">한줄 상품 설명</div>
-            <v-text-field
-              v-model="settings.description"
-              density="compact"
-              counter="100"
-              placeholder="상품설명을 입력해 주세요."
-              :rules="[...rules.description, ...rules.noSymbols]"
-              @blur="settings.description = settings.description!.trim()"
-            />
-          </v-col>
-
           <v-col cols="6" sm="6">
             <div class="label">1차 카테고리</div>
             <v-select

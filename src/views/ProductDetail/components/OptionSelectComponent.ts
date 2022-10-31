@@ -7,8 +7,9 @@ export default defineComponent({
   name: 'OptionSelectComponent',
 
   props: {
-    modelValue: { type: String, required: true },
+    modelValue: { type: [String], required: true },
     type: { type: String, required: true },
+    duplicateItems: { type: Array, defualt: [] },
   },
 
   data() {
@@ -21,19 +22,6 @@ export default defineComponent({
     }
   },
 
-  // watch: {
-  //   'dialog'() {
-  //     if (!this.dialog) {
-  //       this.$emit('update:modelValue', this.dialog)
-  //     } else {
-  //       this.reset();
-  //     }
-  //   },
-  //   'modelValue'() {
-  //     this.dialog = this.modelValue;
-  //   }
-  // },
-
   mounted() {
     this.OptionItems = this.type === 'color' ? OptionData.colors : OptionData.sizes;
     this.filteredItems = this.OptionItems;
@@ -45,21 +33,31 @@ export default defineComponent({
       this.filteredItems = this.OptionItems.filter(item => item.toLowerCase().includes(searchText));
     },
 
-    // selectItem(item: Product.List) {
-    //   this.$emit('selectItem', item.id);
-    //   this.dialog = false;
-    // },
+    selectItem(item: string) {
+      if (this.duplicateItems.includes(item)) return;
 
-    // reset() {
-    //   this.searchText = '';
-    //   this.filteredItems = this.products;
-    // },
+      this.$emit('update:modelValue', item)
+      this.open = false;
+    },
+
+    reset() {
+      this.searchText = '';
+      this.filteredItems = this.OptionItems;
+    },
 
     chageKeyword(event) {
       if (event.isComposing || event.keyCode === 229) return;
 
       this.searchText = event.target.value;
       this.search();
+    },
+
+    openDialog() {
+      this.open = true;
+    },
+
+    submit() {
+      this.$emit('submit');
     }
   }
 });

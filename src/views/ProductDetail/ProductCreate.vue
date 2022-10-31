@@ -38,24 +38,41 @@
     <EditorComponent v-if="currentStep === 3" class="mt-8" create />
     <SizeComponent v-if="currentStep === 3" class="mt-8" create />
 
+    <!-- Step 4: 판매정보 -->
+    <PriceComponent v-if="currentStep === 4" ref="price" create />
+
     <!-- 하단 액션 -->
     <div class="text-right" style="margin: 80px 0 20px 0">
-      <v-btn
-        v-if="$vuetify.display.mdAndUp"
-        color="grey-lighten-4"
-        class="mr-2"
-        size="large"
-        flat
-        @click="cancel"
-      >
-        취소
-      </v-btn>
+      <template v-if="$vuetify.display.mdAndUp">
+        <v-btn
+          v-if="currentStep === 1"
+          color="grey-lighten-4"
+          class="mr-2"
+          size="large"
+          flat
+          @click="cancel"
+        >
+          취소
+        </v-btn>
+        <v-btn
+          v-else
+          color="grey-lighten-4"
+          class="mr-2"
+          size="large"
+          prepend-icon="chevron_left"
+          flat
+          @click="currentStep--"
+        >
+          이전
+        </v-btn>
+      </template>
+
       <v-btn
         color="primary"
         flat
         :class="$vuetify.display.mdAndUp ? 'w-25' : 'w-100'"
         size="large"
-        append-icon="navigate_next"
+        append-icon="chevron_right"
         @click="submit"
       >
         다음

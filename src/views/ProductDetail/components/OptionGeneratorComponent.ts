@@ -44,34 +44,25 @@ export default defineComponent({
 
   methods: {
     addOption(type: string) {
-      if (type === 'color') this.colorOptions.push({ value: null })
-      if (type === 'size') this.sizeOptions.push({ value: null })
+      let ref = '';
+
+      if (type === 'color') {
+        this.colorOptions.push({ value: '' });
+        ref = type + (this.colorOptions.length - 1);
+      }
+      if (type === 'size') {
+        this.sizeOptions.push({ value: '' });
+        ref = type + (this.sizeOptions.length - 1);
+      }
+
+      setTimeout(() => {
+        this.$refs[ref][0].open = true;
+      }, 100);
     },
 
     removeOption(type: string, index: number) {
       if (type === 'color') this.colorOptions.splice(index, 1);
       if (type === 'size') this.sizeOptions.splice(index, 1);
-    },
-
-    // 옵션값 중복 확인
-    checkDuplicateOption(type: string, value: string, index: number) {
-      this.$store.commit('hideSnackbar');
-
-      let options = [] as { value: string }[];
-
-      if (type === 'color') options = this.colorOptions;
-      if (type === 'size') options = this.sizeOptions;
-
-      if (value === null) return;
-
-      const count = options.filter((item) => item.value === value).length;
-
-      if (count > 1) {
-        this.$store.commit('showSnackbar', { text: '중복된 옵션 입니다.', type: 'error' });
-
-        if (type === 'color') this.colorOptions[index] = { value: null };
-        if (type === 'size') this.sizeOptions[index] = { value: null };
-      }
     },
 
     // 옵션 아이템 생성
@@ -95,5 +86,9 @@ export default defineComponent({
         }
       });
     },
+
+    submit() {
+      this.$emit('generate', this.generatingItems);
+    }
   }
 });

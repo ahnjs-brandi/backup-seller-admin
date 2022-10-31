@@ -110,80 +110,90 @@
       />
 
       <!-- 옵션 생성되었으면 -->
-      <!-- <template v-if="optionSettings.generated">
+      <template v-if="optionSettings.generated">
 
         <div class="d-flex align-center mt-6 mb-2">
-
-          <div class="text-subtitle-2">{{ optionItemCount }}개의 옵션</div>
+          <div class="text-body-2">{{ optionItemCount }}개의 옵션</div>
 
           <v-spacer />
 
-          <v-btn
-            variant="text"
-            prepend-icon="tag"
-            @click="resetOption"
-          >
-            내 상품코드로 관리
+          <v-btn variant="text" color="charcoal" prepend-icon="text_format" @click="optionSettings.optionPrice = !optionSettings.optionPrice" >
+            옵션가격 설정
           </v-btn>
-
-          <v-btn
-            variant="text"
-            prepend-icon="refresh"
-            @click="dialogReset = true"
-          >
+          <v-btn variant="text" color="charcoal" prepend-icon="text_format" @click="optionSettings.customCode = !optionSettings.customCode" >
+            내 상품코드
+          </v-btn>
+          <v-btn variant="text" color="charcoal" prepend-icon="refresh" @click="dialogReset = true">
             옵션 초기화
           </v-btn>
         </div>
 
         <v-divider class="my-1" />
-      </template> -->
 
-      <!-- <Confirmation v-model="dialogReset" @confirm="resetOption">
-        정말로 옵션을 초기화 하시겠습니까?
-      </Confirmation> -->
+        <Confirmation v-model="dialogReset" @confirm="resetOption">
+          정말로 옵션을 초기화 하시겠습니까?
+        </Confirmation>
 
-      <!-- 옵션 아이템 리스트 -->
-      <!-- <div
-        v-for="(item, index) in optionSettings.optionItems"
-        :key="index"
-        :style="optionSettings.generated ? '' : 'opacity: .5'"
-      >
-        <v-row dense class="d-flex align-center" style="min-height: 56px">
-          <v-col cols="12" sm="6" md="3">
-            <div class="text-subtitle-1 font-weight-medium">{{ item.name }}</div>
-          </v-col>
+        <!-- 옵션 리스트 -->
+        <div v-for="(item, index) in optionSettings.optionItems" :key="index">
+          <v-row dense class="d-flex align-center" style="min-height: 56px">
+            <v-col cols="12" sm="6" md="4" class="pl-6 d-flex align-center">
+              <v-text-field
+                v-if="optionSettings.customCode"
+                density="compact"
+                hide-details
+                placeholder="관리코드"
+                style="max-width: 120px"
+                class="mr-4 ml-n5"
+              />
 
-          <v-col cols="6" sm="3" md="2" v-if="!optionSettings.generated">
-            <div class="text-body-2">생성 준비됨</div>
-          </v-col>
+              <div class="text-subtitle-1">
+                {{ item.name }}
+              </div>
+            </v-col>
 
-          <v-col cols="6" sm="3" md="2" v-if="optionSettings.generated">
-            <v-switch
-              v-model="item.setStock"
-              color="primary"
-              density="compact"
-              :label="item.setStock ? '재고 관리' : '재고관리 안함'"
-              hide-details
-            />
-          </v-col>
-          <v-col cols="6" sm="3" md="2" v-if="optionSettings.generated && item.setStock">
-            <v-text-field
-              v-model.number="item.stock"
-              type="number"
-              suffix="개"
-              density="compact"
-              min="1"
-              max="20"
-              hide-details
-              :rules="rules.stock"
-            />
-          </v-col>
-        </v-row>
+            <v-col cols="12" sm="6" md="4" class="d-flex align-center">
+              <v-switch
+                v-model="item.setStock"
+                color="primary"
+                density="compact"
+                :label="item.setStock ? '재고 관리' : '재고관리 안함'"
+                hide-details
+              />
+              <v-text-field
+                v-if="item.setStock"
+                v-model.number="item.stock"
+                type="number"
+                suffix="개"
+                density="compact"
+                min="1"
+                max="20"
+                hide-details
+                :rules="rules.stock"
+              />
+            </v-col>
 
-        <v-divider class="my-1" />
-      </div> -->
+            <v-col cols="12" sm="6" md="4" class="d-flex align-center">
+              <v-text-field
+                v-model="item.price"
+                v-if="optionSettings.optionPrice"
+                type="number"
+                density="compact"
+                hide-details
+                placeholder="옵션가격"
+                suffix="원"
+                prefix="+"
+                style="max-width: 160px"
+                class="mr-4"
+              />
+            </v-col>
+          </v-row>
+
+          <v-divider class="my-1" />
+        </div>
+
+      </template>
     </div>
-
   </div>
 </template>
 

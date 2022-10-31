@@ -4,6 +4,7 @@ import EditorComponent from './components/EditorComponent.vue';
 import TagComponent from './components/TagComponent.vue';
 import SizeComponent from './components/SizeComponent.vue';
 import SettingsComponent from './components/SettingsComponent.vue';
+import PriceComponent from './components/PriceComponent.vue';
 
 export default defineComponent({
   name: 'ProductDetail',
@@ -13,7 +14,8 @@ export default defineComponent({
     EditorComponent,
     TagComponent,
     SizeComponent,
-    SettingsComponent
+    SettingsComponent,
+    PriceComponent,
   },
 
   data() {
@@ -79,6 +81,11 @@ export default defineComponent({
       // Step 3: 상세정보 저장
       if (this.currentStep === 3) {
         this.nextStep();
+      }
+
+      // Step 3: 상세정보 저장
+      if (this.currentStep === 4) {
+        alert('create api 호출');
       }
     },
   }

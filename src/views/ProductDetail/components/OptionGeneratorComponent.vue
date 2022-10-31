@@ -21,18 +21,12 @@
           :key="index"
           class="d-flex align-center my-2"
         >
-          <!-- <v-autocomplete
+          <OptionSelectComponent
             v-model="item.value"
-            :items="colors"
-            density="compact"
-            height="10"
-            placeholder="색상을 선택해주세요"
-            :allow-overflow="false"
-            no-data-text="검색 결과가 없습니다."
-            hide-details
-            @update:model-value="checkDuplicateOption('color', item.value, index)"
-          /> -->
-          <OptionSelectComponent v-model="item.value" type="color" />
+            :ref="`color${index}`"
+            type="color"
+            :duplicateItems="colorOptions.map(item => item.value)"
+          />
 
           <v-btn
             size="small"
@@ -40,7 +34,7 @@
             variant="plain"
             color="charcoal"
             :disabled="index === 0"
-            @click="removeOption('color', index)"
+             @click="removeOption('color', index)"
             />
         </div>
 
@@ -63,16 +57,11 @@
           :key="index"
           class="d-flex align-center my-2"
         >
-          <v-autocomplete
+          <OptionSelectComponent
             v-model="item.value"
-            :items="sizes"
-            density="compact"
-            height="10"
-            placeholder="사이즈를 선택해주세요"
-            :allow-overflow="false"
-            no-data-text="검색 결과가 없습니다."
-            hide-details
-            @update:model-value="checkDuplicateOption('size', item.value, index)"
+            :ref="`size${index}`"
+            type="size"
+            :duplicateItems="sizeOptions.map(item => item.value)"
           />
 
           <v-btn
@@ -98,28 +87,27 @@
       </v-col>
 
       <v-col cols="12" sm="6" md="3" class="pl-md-12 mb-5">
-        <div class="label mb-1">{{ generatingItems.length }}개 생성</div>
+        <div class="label mb-1">{{ generatingItems.length }}개의 옵션이 생성될 예정 입니다.</div>
         <div
           v-for="(item, index) in generatingItems"
           :key="index"
           class="text-body-2"
-        >
+          >
           {{ item.name }}
         </div>
       </v-col>
-    </v-row>
 
-    <!-- <v-row dense class="my-6">
-      <v-col cols="12" sm="12" md="6" class="text-center">
+      <v-col cols="12" sm="6" md="3" class="pl-md-12 mb-5">
         <v-btn
           color="primary"
-          :class="$vuetify.display.mdAndUp ? 'w-50' : 'w-100'"
-          @click="generateOptionItems"
+          prepend-icon="check"
+          :class="$vuetify.display.mdAndUp ? '' : 'w-100'"
+          @click="submit"
         >
-          {{ optionItemCount }}개의 상품관리코드 생성
+          옵션 생성
         </v-btn>
       </v-col>
-    </v-row> -->
+    </v-row>
   </div>
 </template>
 

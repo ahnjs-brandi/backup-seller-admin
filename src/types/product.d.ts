@@ -33,7 +33,6 @@ declare namespace Product {
     tax: boolean | null;
     delivery: string;
     name: string;
-    description: string;
     images: File[] | string[];
     madeIn: string;
     codi: boolean;
@@ -55,5 +54,6 @@ declare namespace Product {
     setStock: boolean;
     stock: number;
     customCode: string | null;
+    price?: number;
   }
 }

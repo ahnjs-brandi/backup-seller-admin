@@ -35,7 +35,11 @@
     </div>
 
     <!-- 하단 액션 -->
-    <div class="text-right" style="margin: 80px 0 20px 0">
+    <div
+      v-if="this.$refs.price?.optionSettings.generated ?? true"
+      class="text-right"
+      style="margin: 80px 0 20px 0"
+    >
       <v-btn
         v-if="$vuetify.display.mdAndUp"
         color="grey-lighten-4"

@@ -28,6 +28,8 @@ export default defineComponent({
       optionSettings: {
         customOption: false,
         generated: false,
+        customCode: false,
+        optionPrice: false,
         optionItems: [] as Product.Option[],
       },
       dialogReset: false,
@@ -86,15 +88,17 @@ export default defineComponent({
     if (this.create) {
       //생성 페이지 초기화
       if (this.$store.getters.saleSettings) {
-        // 스토어에 저장된 판매정보가 있으면 불러옴
+        // 스토어에 저장된 정보가 있으면 불러옴
         this.saleSettings = this.$store.getters.saleSettings;
+        this.optionSettings = this.$store.getters.optionSettings;
       }
-      else if (this.settings.duplicateProductId) {
+      // else if (this.settings.duplicateProductId) {
         // TODO: 복제된 상품 옵션 불러오기
-      }
+        // this.fetchOptions();
+      // }
     } else {
       // 수정 페이지 초기화
-      // TODO: 옵션 정보 불러오기
+      this.fetchOptions();
     }
   },
 
@@ -112,6 +116,27 @@ export default defineComponent({
       return `${text}원`;
     },
 
+    fetchOptions() {
+      this.saleSettings = {
+        exhibition: true,
+        sell: true,
+        price: 0,
+        minQuantity: 1,
+        maxQuantity: 20,
+        useOption: true,
+        setStock: false,
+        stock: 10
+      };
+
+      this.optionSettings = {
+        customOption: false,
+        generated: true,
+        customCode: false,
+        optionPrice: false,
+        optionItems: [ { "name": "White XS", "color": "White", "size": "XS", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "White S", "color": "White", "size": "S", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "White M", "color": "White", "size": "M", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "White L", "color": "White", "size": "L", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "White XL", "color": "White", "size": "XL", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "Black XS", "color": "Black", "size": "XS", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "Black S", "color": "Black", "size": "S", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "Black M", "color": "Black", "size": "M", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "Black L", "color": "Black", "size": "L", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "Black XL", "color": "Black", "size": "XL", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "Yellow XS", "color": "Yellow", "size": "XS", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "Yellow S", "color": "Yellow", "size": "S", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "Yellow M", "color": "Yellow", "size": "M", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "Yellow L", "color": "Yellow", "size": "L", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "Yellow XL", "color": "Yellow", "size": "XL", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "Khaki XS", "color": "Khaki", "size": "XS", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "Khaki S", "color": "Khaki", "size": "S", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "Khaki M", "color": "Khaki", "size": "M", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "Khaki L", "color": "Khaki", "size": "L", "setStock": false, "stock": 20, "customCode": null, price: 0 }, { "name": "Khaki XL", "color": "Khaki", "size": "XL", "setStock": false, "stock": 20, "customCode": null, price: 0 }],
+      }
+    },
+
     // 옵션 아이템 생성 완료
     generateOptionItems() {
       this.optionSettings.generated = true;
@@ -122,11 +147,22 @@ export default defineComponent({
       this.optionSettings.generated = false;
       this.colorOptions = [{ value: 'White' }];
       this.sizeOptions = [{ value: 'Free' }];
-      this.setOptionItems();
     },
 
-    generateOptions() {
-      //
+    generateOptions(options: Product.Option[]) {
+      this.optionSettings.generated = true;
+
+      this.optionSettings.optionItems = options.map((option) => {
+        return {
+          name: option.name,
+          color: option.color,
+          size: option.size,
+          setStock: false,
+          stock: 20,
+          customCode: null,
+          price: 0,
+        }
+      });
     }
   }
 });

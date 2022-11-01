@@ -146,8 +146,9 @@
       </v-col>
     </v-row>
 
+    <!-- 코디상품 리스트 -->
     <v-row dense>
-      <v-col v-for="item in settings.codiProducts" :key="item.id" cols="4" sm="3" md="2" lg="1">
+      <v-col v-for="item in settings.codiProducts" :key="item.id" cols="4" sm="3" md="2" xl="1">
         <v-card>
           <v-img :src="item.img" aspect-ratio="1">
             <div class="text-right">

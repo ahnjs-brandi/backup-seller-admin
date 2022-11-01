@@ -90,6 +90,8 @@ export default defineComponent({
       if (this.$store.getters.saleSettings) {
         // 스토어에 저장된 정보가 있으면 불러옴
         this.saleSettings = this.$store.getters.saleSettings;
+      }
+      if (this.$store.getters.optionSettings) {
         this.optionSettings = this.$store.getters.optionSettings;
       }
       // else if (this.settings.duplicateProductId) {

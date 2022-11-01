@@ -72,10 +72,10 @@
         flat
         :class="$vuetify.display.mdAndUp ? 'w-25' : 'w-100'"
         size="large"
-        append-icon="chevron_right"
+        :append-icon="currentStep === 4 ? 'check' : 'chevron_right'"
         @click="submit"
       >
-        다음
+       {{ currentStep === 4 ? '상품추가' : '다음' }}
       </v-btn>
     </div>
   </div>

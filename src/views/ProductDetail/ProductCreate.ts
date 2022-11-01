@@ -83,10 +83,14 @@ export default defineComponent({
         this.nextStep();
       }
 
-      // Step 3: 상세정보 저장
+      // Step 4: 판매정보 저장
       if (this.currentStep === 4) {
-        alert('create api 호출');
+        this.nextStep();
       }
+
+      // if (this.currentStep === 4) {
+      //   alert('create api 호출');
+      // }
     },
   }
 });
